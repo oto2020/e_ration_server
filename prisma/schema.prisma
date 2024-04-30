@@ -1,0 +1,74 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "generated"
+}
+
+model Product {
+  id           Int               @id
+  categoryId   Int
+  title        String
+  category     ProductCategory   @relation(fields: [categoryId], references: [id])
+  nutrients    ProductNutrient[]
+  msrs         ProductMsr[]
+  netWeight ProductNetWeight[]
+}
+
+model ProductCategory {
+  id       Int       @id @default(autoincrement())
+  name     String
+  desc     String?
+  products Product[]
+}
+
+model Nutrient {
+  id         String            @id
+  categoryId Int
+  name       String
+  category   NutrientCategory  @relation(fields: [categoryId], references: [id])
+  products   ProductNutrient[]
+}
+
+model NutrientCategory {
+  id        Int        @id @default(autoincrement())
+  name      String
+  desc      String?
+  nutrients Nutrient[]
+}
+
+model ProductNutrient {
+  id            Int      @id @default(autoincrement())
+  productId     Int
+  nutrientId    String
+  valueString   String?
+  valueAmount   Float?
+  valueExponent Int?
+  product       Product  @relation(fields: [productId], references: [id])
+  nutrient      Nutrient @relation(fields: [nutrientId], references: [id])
+}
+
+model ProductNetWeight {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  name      String
+  value     Float
+  desc      String?
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model ProductMsr {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  name      String
+  value     Float
+  desc      String?
+  product   Product @relation(fields: [productId], references: [id])
+}

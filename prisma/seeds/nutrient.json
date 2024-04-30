@@ -1,0 +1,487 @@
+[
+  {
+    "id": "water",
+    "name": "Вода",
+    "categoryId": 1
+  },
+  {
+    "id": "protein",
+    "name": "Белки",
+    "categoryId": 2
+  },
+  {
+    "id": "fat",
+    "name": "Жиры",
+    "categoryId": 2
+  },
+  {
+    "id": "carbohydrate",
+    "name": "Углеводы",
+    "categoryId": 2
+  },
+  {
+    "id": "sugars",
+    "name": "Сахара",
+    "categoryId": 1
+  },
+  {
+    "id": "glucose",
+    "name": "Глюкоза",
+    "categoryId": 1
+  },
+  {
+    "id": "fructose",
+    "name": "Фруктоза",
+    "categoryId": 1
+  },
+  {
+    "id": "galactose",
+    "name": "Галактоза",
+    "categoryId": 1
+  },
+  {
+    "id": "sucrose",
+    "name": "Сахароза",
+    "categoryId": 1
+  },
+  {
+    "id": "maltose",
+    "name": "Мальтоза",
+    "categoryId": 1
+  },
+  {
+    "id": "lactose",
+    "name": "Лактоза",
+    "categoryId": 1
+  },
+  {
+    "id": "starch",
+    "name": "Крахмал",
+    "categoryId": 1
+  },
+  {
+    "id": "fiber",
+    "name": "Клетчатка",
+    "categoryId": 1
+  },
+  {
+    "id": "ash",
+    "name": "Зола",
+    "categoryId": 1
+  },
+  {
+    "id": "energy",
+    "name": "Калории",
+    "categoryId": 1
+  },
+  {
+    "id": "calcium",
+    "name": "Кальций",
+    "categoryId": 3
+  },
+  {
+    "id": "iron",
+    "name": "Железо",
+    "categoryId": 3
+  },
+  {
+    "id": "magnesium",
+    "name": "Магний",
+    "categoryId": 3
+  },
+  {
+    "id": "phosphorus",
+    "name": "Фосфор",
+    "categoryId": 3
+  },
+  {
+    "id": "potassium",
+    "name": "Калий",
+    "categoryId": 3
+  },
+  {
+    "id": "sodium",
+    "name": "Натрий",
+    "categoryId": 3
+  },
+  {
+    "id": "zinc",
+    "name": "Цинк",
+    "categoryId": 3
+  },
+  {
+    "id": "copper",
+    "name": "Медь",
+    "categoryId": 3
+  },
+  {
+    "id": "manganese",
+    "name": "Марганец",
+    "categoryId": 3
+  },
+  {
+    "id": "selenium",
+    "name": "Селен",
+    "categoryId": 3
+  },
+  {
+    "id": "fluoride",
+    "name": "Фтор",
+    "categoryId": 3
+  },
+  {
+    "id": "vitamin_a",
+    "name": "Витамин A (Ретинол)",
+    "categoryId": 4
+  },
+  {
+    "id": "beta_carotene",
+    "name": "Бета-каротин",
+    "categoryId": 4
+  },
+  {
+    "id": "alpha_carotene",
+    "name": "Альфа-каротин",
+    "categoryId": 4
+  },
+  {
+    "id": "vitamin_d",
+    "name": "Витамин D",
+    "categoryId": 4
+  },
+  {
+    "id": "vitamin_d2",
+    "name": "Витамин D2 (Эргокальциферол)",
+    "categoryId": 4
+  },
+  {
+    "id": "vitamin_d3",
+    "name": "Витамин D3 (Холекальциферол)",
+    "categoryId": 4
+  },
+  {
+    "id": "vitamin_e",
+    "name": "Витамин E (Токоферол)",
+    "categoryId": 4
+  },
+  {
+    "id": "vitamin_k",
+    "name": "Витамин K",
+    "categoryId": 4
+  },
+  {
+    "id": "vitamin_c",
+    "name": "Витамин C (Аскорбиновая кислота)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b1",
+    "name": "Витамин B1 (Тиамин)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b2",
+    "name": "Витамин B2 (Рибофлавин)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b3",
+    "name": "Витамин B3 (PP, Никотиновая кислота)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b4",
+    "name": "Витамин B4 (Холин)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b5",
+    "name": "Витамин B5 (Пантотеновая кислота)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b6",
+    "name": "Витамин B6 (Пиридоксин)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b9",
+    "name": "Витамин B9 (Фолиевая кислота)",
+    "categoryId": 5
+  },
+  {
+    "id": "vitamin_b12",
+    "name": "Витамин B12 (Кобаламин)",
+    "categoryId": 5
+  },
+  {
+    "id": "tryptophan",
+    "name": "Триптофан",
+    "categoryId": 6
+  },
+  {
+    "id": "threonine",
+    "name": "Треонин",
+    "categoryId": 6
+  },
+  {
+    "id": "isoleucine",
+    "name": "Изолейцин",
+    "categoryId": 6
+  },
+  {
+    "id": "leucine",
+    "name": "Лейцин",
+    "categoryId": 6
+  },
+  {
+    "id": "lysine",
+    "name": "Лизин",
+    "categoryId": 6
+  },
+  {
+    "id": "methionine",
+    "name": "Метионин",
+    "categoryId": 6
+  },
+  {
+    "id": "cystine",
+    "name": "Цистин",
+    "categoryId": 6
+  },
+  {
+    "id": "phenylalanine",
+    "name": "Фенилаланин",
+    "categoryId": 6
+  },
+  {
+    "id": "tyrosine",
+    "name": "Тирозин",
+    "categoryId": 6
+  },
+  {
+    "id": "valine",
+    "name": "Валин",
+    "categoryId": 6
+  },
+  {
+    "id": "arginine",
+    "name": "Аргинин",
+    "categoryId": 6
+  },
+  {
+    "id": "histidine",
+    "name": "Гистидин",
+    "categoryId": 6
+  },
+  {
+    "id": "alanine",
+    "name": "Аланин",
+    "categoryId": 6
+  },
+  {
+    "id": "aspartic_acid",
+    "name": "Аспарагиновая кислота",
+    "categoryId": 6
+  },
+  {
+    "id": "glutamic_acid",
+    "name": "Глутаминовая кислота",
+    "categoryId": 6
+  },
+  {
+    "id": "glycine",
+    "name": "Глицин",
+    "categoryId": 6
+  },
+  {
+    "id": "proline",
+    "name": "Пролин",
+    "categoryId": 6
+  },
+  {
+    "id": "serine",
+    "name": "Серин",
+    "categoryId": 6
+  },
+  {
+    "id": "butyric",
+    "name": "Масляная к-та (бутановая к-та) (4:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "caproic",
+    "name": "Капроновая кислота (6:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "caprylic",
+    "name": "Каприловая кислота (8:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "capric",
+    "name": "Каприновая кислота (10:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "lauric",
+    "name": "Лауриновая кислота (12:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "myristic",
+    "name": "Миристиновая кислота (14:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "palmitic",
+    "name": "Пальмитиновая кислота (16:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "stearic",
+    "name": "Стеариновая кислота (18:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "arachidic",
+    "name": "Арахиновая кислота (20:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "behenic",
+    "name": "Бегеновая кислота (22:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "lignoceric",
+    "name": "Лигноцериновая кислота (24:0)",
+    "categoryId": 7
+  },
+  {
+    "id": "palmitoleic",
+    "name": "Пальмитолеиновая к-та (16:1)",
+    "categoryId": 8
+  },
+  {
+    "id": "oleic",
+    "name": "Олеиновая кислота (18:1)",
+    "categoryId": 8
+  },
+  {
+    "id": "gadoleic",
+    "name": "Гадолиновая кислота (20:1)",
+    "categoryId": 8
+  },
+  {
+    "id": "erucic",
+    "name": "Эруковая кислота (22:1)",
+    "categoryId": 8
+  },
+  {
+    "id": "nervonic",
+    "name": "Нервоновая кислота (24:1)",
+    "categoryId": 8
+  },
+  {
+    "id": "linoleic",
+    "name": "Линолевая кислота (18:2)",
+    "categoryId": 9
+  },
+  {
+    "id": "linolenic",
+    "name": "Линоленовая кислота (18:3)",
+    "categoryId": 9
+  },
+  {
+    "id": "alpha_linolenic",
+    "name": "Альфа-линоленовая к-та (18:3) (Омега-3)",
+    "categoryId": 9
+  },
+  {
+    "id": "gamma_linolenic",
+    "name": "Гамма-линоленовая к-та (18:3) (Омега-6)",
+    "categoryId": 9
+  },
+  {
+    "id": "eicosadienoic",
+    "name": "Эйкозадиеновая кислота (20:2) (Омега-6)",
+    "categoryId": 9
+  },
+  {
+    "id": "arachidonic",
+    "name": "Арахидоновая к-та (20:4) (Омега-6)",
+    "categoryId": 9
+  },
+  {
+    "id": "timnodonic",
+    "name": "Тимнодоновая к-та (20:5) (Омега-3)",
+    "categoryId": 9
+  },
+  {
+    "id": "clupanodonic",
+    "name": "Докозапентаеновая к-та (22:5) (Омега-3)",
+    "categoryId": 9
+  },
+  {
+    "id": "cholesterol",
+    "name": "Холестерин (холестерол)",
+    "categoryId": 10
+  },
+  {
+    "id": "phytosterols",
+    "name": "Фитостерины (фитостеролы)",
+    "categoryId": 10
+  },
+  {
+    "id": "stigmasterol",
+    "name": "Стигмастерол",
+    "categoryId": 10
+  },
+  {
+    "id": "campesterol",
+    "name": "Кампестерол",
+    "categoryId": 10
+  },
+  {
+    "id": "betasitosterol",
+    "name": "Бета-ситостерин (бета-ситостерол)",
+    "categoryId": 10
+  },
+  {
+    "id": "fat_trans_monoenoic",
+    "name": "Трансжиры (моноеновые)",
+    "categoryId": 11
+  },
+  {
+    "id": "fat_trans_polyenoic",
+    "name": "Трансжиры (полиеновые)",
+    "categoryId": 11
+  },
+  {
+    "id": "bcaa",
+    "name": "BCAA",
+    "categoryId": 12
+  },
+  {
+    "id": "creatine",
+    "name": "Креатин",
+    "categoryId": 12
+  },
+  {
+    "id": "alcohol_ethyl",
+    "name": "Алкоголь",
+    "categoryId": 12
+  },
+  {
+    "id": "caffeine",
+    "name": "Кофеин",
+    "categoryId": 12
+  },
+  {
+    "id": "theobromine",
+    "name": "Теобромин",
+    "categoryId": 12
+  }
+]
