@@ -1,4 +1,5 @@
 node_modules
 prisma/generated
+prisma/migrations
 .env
 package-lock.json
