@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "seed": "ts-node prisma/seeds/seed.ts",
-    "server": "ts-node src/server.ts"
+    "server": "ts-node src/server.ts",
+    "generate-api-key": "ts-node src/generateApiKey.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,8 @@
     "@prisma/client": "^5.13.0",
     "apollo-server": "^3.13.0",
     "axios": "^1.6.8",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
     "graphql-fields": "^2.0.3",
     "reflect-metadata": "^0.2.2",
     "type-graphql": "^2.0.0-rc.1",
