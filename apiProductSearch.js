@@ -1,5 +1,5 @@
 const axios = require('axios');
-const url = `http://localhost:3000/graphql`
+const url = `http://localhost:3006/graphql`
 function searchProductByName(searchTerm) {
     const query = `
     query FindProductByTitleBGU($searchTerm: String!) {

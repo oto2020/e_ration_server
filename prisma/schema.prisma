@@ -112,23 +112,7 @@ model Menu {
 
 model MenuSchedule {
   id       Int      @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
-  dietId   Int // Идентификатор рациона, к которому относится эта запись.
   menuId   Int // Идентификатор меню, к которому относится эта запись.
   date     DateTime? // Дата планируемого приема пищи, необязательная.
-  diet     Diet      @relation(fields: [dietId], references: [id]) // Связь с рационом.
   menu     Menu     @relation(fields: [menuId], references: [id]) // Связь с меню.
-}
-
-model Diet {
-  id       Int   @id @default(autoincrement()) // Идентификатор рациона, автогенерируемый.
-  userId   Int // Идентификатор пользователя, которому принадлежит рацион.
-  schedules MenuSchedule[] // Связь с таблицей MenuSchedule, описывающей меню этого рациона.
-  user     User  @relation(fields: [userId], references: [id]) // Связь с пользователем.
-}
-
-model User {
-  id            Int            @id @default(autoincrement()) // Идентификатор пользователя, автогенерируемый.
-  name          String // Имя пользователя.
-  email         String         @unique // Уникальная электронная почта.
-  diets         Diet[]         // Связь с таблицей Diet, описывающей рационы пользователя.
 }
