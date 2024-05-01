@@ -28,7 +28,7 @@ async function main() {
   app.use(cors()); // Применяем CORS middleware
 
   app.listen({ port: 3006 }, () => {
-    console.log(`Server is running at http://localhost:3006/graphql`);
+    console.log(`Server is running at http://127.0.0.1:3006/graphql`);
   });
 }
 
