@@ -1,8 +1,10 @@
 import 'reflect-metadata';
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
 import { buildSchema } from 'type-graphql';
 import { PrismaClient } from '@prisma/client';
 import { resolvers } from '../prisma/generated/index';
+import cors from 'cors'; // Импорт модуля для CORS
 
 const prisma = new PrismaClient();
 
@@ -12,13 +14,21 @@ async function main() {
     validate: false,
   });
 
+  const app = express();
+
   const server = new ApolloServer({ 
     schema,
-    context: () => ({ prisma }), // Передаем Prisma Client в контекст
+    context: () => ({ prisma }),
   });
 
-  server.listen({ port: 3006 }).then(({ url }) => {
-    console.log(`Server is running on ${url}`);
+  await server.start(); // Запускаем сервер Apollo
+
+  server.applyMiddleware({ app });
+
+  app.use(cors()); // Применяем CORS middleware
+
+  app.listen({ port: 3006 }, () => {
+    console.log(`Server is running at http://localhost:3006/graphql`);
   });
 }
 
