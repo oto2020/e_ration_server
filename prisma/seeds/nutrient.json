@@ -5,22 +5,22 @@
     "categoryId": 1
   },
   {
-    "id": "protein",
+    "id": "b",
     "name": "Белки",
     "categoryId": 2
   },
   {
-    "id": "fat",
+    "id": "g",
     "name": "Жиры",
     "categoryId": 2
   },
   {
-    "id": "carbohydrate",
+    "id": "u",
     "name": "Углеводы",
     "categoryId": 2
   },
   {
-    "id": "energy",
+    "id": "kcal",
     "name": "Калории",
     "categoryId": 2
   },
