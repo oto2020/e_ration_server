@@ -12,30 +12,11 @@ generator typegraphql {
   output   = "generated" // Директория, куда сохраняются сгенерированные файлы.
 }
 
-model Product {
-  id           Int               @id // Поле id является первичным ключом.
-  categoryId   Int // Ссылка на идентификатор категории.
-  title        String // Название продукта.
-  category     ProductCategory   @relation(fields: [categoryId], references: [id]) // Ссылка на категорию через поле categoryId.
-  nutrients    ProductNutrient[] // Связь с таблицей ProductNutrient, описывающей питательные вещества.
-  msrs         ProductMsr[] // Связь с таблицей ProductMsr, описывающей измерения продукта.
-  netWeight    ProductNetWeight[] // Связь с таблицей ProductNetWeight, описывающей нетто-измерение.
-  dishes       DishProduct[] // Связь с таблицей DishProduct, описывающей блюда, содержащие этот продукт.
-}
-
 model ProductCategory {
   id       Int       @id @default(autoincrement()) // Идентификатор категории, автогенерируемый.
   name     String // Название категории.
   desc     String? // Описание категории, необязательное поле.
   products Product[] // Связь с таблицей продуктов, принадлежащих этой категории.
-}
-
-model Nutrient {
-  id         String            @id // Идентификатор питательного вещества.
-  categoryId Int // Ссылка на идентификатор категории питательных веществ.
-  name       String // Название питательного вещества.
-  category   NutrientCategory  @relation(fields: [categoryId], references: [id]) // Связь с категорией питательных веществ.
-  products   ProductNutrient[] // Связь с таблицей ProductNutrient, описывающей продукты, содержащие это вещество.
 }
 
 model NutrientCategory {
@@ -45,75 +26,100 @@ model NutrientCategory {
   nutrients Nutrient[] // Связь с таблицей Nutrient, описывающей питательные вещества этой категории.
 }
 
+model Product {
+  id                  Int               @id @default(autoincrement())// Поле id является первичным ключом.
+  name                String   // Название продукта.
+  productNutrients    ProductNutrient[]     // Связь с таблицей ProductNutrient, описывающей питательные вещества.
+  productMeasures     ProductMeasure[]          // Связь с таблицей ProductMeasure, описывающей измерения продукта.
+  productTotalWeights ProductTotalWeight[]    // Связь с таблицей ProductTotalWeight, описывающей нетто-измерение.
+  dishProducts        DishProduct[] // Связь с таблицей DishProduct, описывающей блюда, содержащие этот продукт.
+  productCategory     ProductCategory   @relation(fields: [categoryId], references: [id]) // Ссылка на категорию через поле categoryId.
+  categoryId          Int
+}
+
+model Nutrient {
+  id         String  @id // Идентификатор питательного вещества.
+  name       String // Название питательного вещества.
+  productNutrients   ProductNutrient[] // Связь с таблицей ProductNutrient, описывающей продукты, содержащие это вещество.
+  nutrientCategory   NutrientCategory  @relation(fields: [categoryId], references: [id]) // Связь с категорией питательных веществ.
+  categoryId  Int
+}
+
+
 model ProductNutrient {
   id            Int      @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
-  productId     Int // Идентификатор продукта, содержащего это вещество.
-  nutrientId    String // Идентификатор питательного вещества.
   valueString   String? // Дополнительная строковая информация о веществе, необязательная.
-  valueAmount   Float? // Количество вещества, необязательное.
-  valueExponent Int? // Экспонента для количества вещества, необязательная.
+  valueAmount   Float // Количество вещества, необязательное.
+  valueExponent Int // Экспонента для количества вещества, необязательная.
   product       Product  @relation(fields: [productId], references: [id]) // Связь с продуктом.
   nutrient      Nutrient @relation(fields: [nutrientId], references: [id]) // Связь с питательным веществом.
+  productId     Int // Идентификатор продукта, содержащего это вещество.
+  nutrientId    String // Идентификатор питательного вещества.
+  @@unique([productId, nutrientId])
 }
 
-model ProductNetWeight {
+// ссылается к одному конкретному продукту
+model ProductTotalWeight {
   id        Int     @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
+  value     Float // Значение измерения.
+  desc      String? // Описание измерения, необязательное.
+  product   Product @relation(fields: [productId], references: [id]) // Связь с продуктом.
   productId Int // Идентификатор продукта, к которому относится измерение.
+}
+
+model ProductMeasure {
+  id        Int     @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
   name      String // Название измерения.
   value     Float // Значение измерения.
   desc      String? // Описание измерения, необязательное.
   product   Product @relation(fields: [productId], references: [id]) // Связь с продуктом.
-}
-
-model ProductMsr {
-  id        Int     @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
   productId Int // Идентификатор продукта, к которому относится измерение.
-  name      String // Название измерения.
-  value     Float // Значение измерения.
-  desc      String? // Описание измерения, необязательное.
-  product   Product @relation(fields: [productId], references: [id]) // Связь с продуктом.
 }
 
 model Dish {
-  id          Int          @id @default(autoincrement()) // Идентификатор блюда, автогенерируемый.
-  name        String       @unique // Уникальное название блюда.
-  description String? // Описание блюда, необязательное.
-  dishes      DishProduct[] // Связь с таблицей DishProduct, описывающей продукты в этом блюде.
-  menus       Menu[] // Связь с таблицей Menu, описывающей, в каких меню используется это блюдо.
+  id                Int          @id @default(autoincrement()) // Идентификатор блюда, автогенерируемый.
+  name              String       @unique // Уникальное название блюда.
+  description       String? // Описание блюда, необязательное.
+  dishProducts      DishProduct[] // Связь с таблицей DishProduct, описывающей продукты в этом блюде.
+  MenuDishes        MenuDish[] // Связь с таблицей MenuDish, описывающей, в каких меню используется это блюдо.
 }
 
 model DishProduct {
   id          Int     @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
+  dish        Dish    @relation(fields: [dishId], references: [id]) // Связь с блюдом.
+  product     Product @relation(fields: [productId], references: [id]) // Связь с продуктом.
+  quantity    Float
+  cookCoeff   Float   @default(1) // Коэффициент изменения массы при приготовлении, по умолчанию 1.
   dishId      Int // Идентификатор блюда.
   productId   Int // Идентификатор продукта.
-  cookCoeff   Float   @default(1) // Коэффициент изменения массы при приготовлении, по умолчанию 1.
-  weight      Float   @default(100) // Коэффициент изменения массы при приготовлении, по умолчанию 100.
-  product     Product @relation(fields: [productId], references: [id]) // Связь с продуктом.
-  dish        Dish    @relation(fields: [dishId], references: [id]) // Связь с блюдом.
+  @@unique([dishId, productId])
 }
 
+// Перечисление типов приемов пищи
 enum MealType {
-  BREAKFAST // Завтрак
-  LUNCH // Ланч
-  DINNER // Обед
-  SNACK // Полдник
-  SUPPER // Ужин
-  LATE_SUPPER // Поздний ужин
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+  SUPPER
+  LATE_SUPPER
 }
 
-model Menu {
-  id          Int       @id @default(autoincrement()) // Идентификатор меню, автогенерируемый.
-  name        String // Название меню.
-  description String? // Описание меню, необязательное.
-  mealType    MealType  // Тип приема пищи (завтрак, обед и т.д.)
-  dishId      Int // Идентификатор блюда, входящего в это меню.
-  dish        Dish      @relation(fields: [dishId], references: [id]) // Связь с блюдом.
-  schedules   MenuSchedule[] // Связь с таблицей MenuSchedule, описывающей расписание этого меню.
+// Модель меню на день
+model DailyMenu {
+  id              Int       @id @default(autoincrement())
+  date            DateTime  @default(now())
+  mealType        MealType
+  MenuDishes      MenuDish[] // Связь с блюдами в меню
 }
 
-model MenuSchedule {
-  id       Int      @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
-  menuId   Int // Идентификатор меню, к которому относится эта запись.
-  date     DateTime? // Дата планируемого приема пищи, необязательная.
-  menu     Menu     @relation(fields: [menuId], references: [id]) // Связь с меню.
+// Модель связи между меню на день и блюдом с указанием количества
+model MenuDish {
+  id          Int       @id @default(autoincrement())
+  dailyMenu   DailyMenu @relation(fields: [dailyMenuId], references: [id])
+  dish        Dish      @relation(fields: [dishId], references: [id])
+  quantity    Float
+  dailyMenuId Int
+  dishId      Int
+  @@unique([dailyMenuId, dishId])
 }

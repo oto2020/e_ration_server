@@ -1,5 +1,5 @@
 const fs = require('fs');
-const FILE_NAME = 'nutrient.json';
+const FILE_NAME = 'productTotalWeight.json';
 // Чтение данных из JSON-файла
 fs.readFile(FILE_NAME, 'utf8', (err, data) => {
     if (err) {
@@ -11,9 +11,9 @@ fs.readFile(FILE_NAME, 'utf8', (err, data) => {
         // Преобразование JSON в объект JavaScript
         const jsonData = JSON.parse(data);
 
-        // Удаление поля "number" из каждого объекта
+        // Удаление поля "name" из каждого объекта
         const newData = jsonData.map(obj => {
-            delete obj.number;
+            delete obj.name;
             return obj;
         });
 

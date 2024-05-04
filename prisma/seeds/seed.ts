@@ -15,14 +15,12 @@ interface Category {
 
 interface Product {
     id: number;
-    number: number;
-    title: string;
+    name: string;
     categoryId: number;
 }
 
 interface Nutrient {
     id: string;
-    number: number;
     name: string;
     categoryId: number;
 }
@@ -31,20 +29,19 @@ interface ProductNutrient {
     id: number;
     productId: number;
     nutrientId: string;
-    valueString?: string;
-    valueAmount?: number;
-    valueExponent?: number;
+    valueString: string;
+    valueAmount: number;
+    valueExponent: number;
 }
 
-interface ProductNetWeight {
+interface ProductTotalWeight {
     id: number;
     productId: number;
-    name: string;
     value: number;
     desc?: string;
 }
 
-interface ProductMsr {
+interface ProductMeasure {
     id: number;
     productId: number;
     name: string;
@@ -66,8 +63,8 @@ async function seedData(): Promise<void> {
     const nutrientData = await loadJson<Nutrient[]>('nutrient.json');
     const nutrientCategoryData = await loadJson<Category[]>('nutrientCategory.json');
     const productNutrientData = await loadJson<ProductNutrient[]>('productNutrient.json');
-    const productNetWeightData = await loadJson<ProductNetWeight[]>('productNetWeight.json');
-    const productMsrData = await loadJson<ProductMsr[]>('productMsr.json');
+    const productTotalWeightData = await loadJson<ProductTotalWeight[]>('productTotalWeight.json');
+    const productMeasureData = await loadJson<ProductMeasure[]>('productMeasure.json');
 
     for (const category of productCategoryData) {
         await prisma.productCategory.upsert({
@@ -92,7 +89,7 @@ async function seedData(): Promise<void> {
     for (const product of productData) {
         await prisma.product.upsert({
             where: { id: product.id },
-            update: { title: product.title, categoryId: product.categoryId },
+            update: { name: product.name, categoryId: product.categoryId },
             create: product
         });
     }
@@ -116,23 +113,23 @@ async function seedData(): Promise<void> {
     }
     console.log(`productNutrient готов!`);
 
-    for (const netWeight of productNetWeightData) {
-        await prisma.productNetWeight.upsert({
-            where: { id: netWeight.id },
-            update: netWeight,
-            create: netWeight
+    for (const productTotalWeight of productTotalWeightData) {
+        await prisma.productTotalWeight.upsert({
+            where: { id: productTotalWeight.id },
+            update: productTotalWeight,
+            create: productTotalWeight
         });
     }
-    console.log(`productNetWeight готов!`);
+    console.log(`productTotalWeight готов!`);
 
-    for (const msr of productMsrData) {
-        await prisma.productMsr.upsert({
+    for (const msr of productMeasureData) {
+        await prisma.productMeasure.upsert({
             where: { id: msr.id },
             update: msr,
             create: msr
         });
     }
-    console.log(`productMsr готов!`);
+    console.log(`productMeasure готов!`);
 }
 
 // Запуск функции начального заполнения и обработка возможных ошибок

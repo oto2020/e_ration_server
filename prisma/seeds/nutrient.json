@@ -20,6 +20,11 @@
     "categoryId": 2
   },
   {
+    "id": "energy",
+    "name": "Калории",
+    "categoryId": 2
+  },
+  {
     "id": "sugars",
     "name": "Сахара",
     "categoryId": 1
@@ -67,11 +72,6 @@
   {
     "id": "ash",
     "name": "Зола",
-    "categoryId": 1
-  },
-  {
-    "id": "energy",
-    "name": "Калории",
     "categoryId": 1
   },
   {

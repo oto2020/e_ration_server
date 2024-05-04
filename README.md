@@ -14,9 +14,8 @@ npm install -g ts-node
 
 npm run generate-api-key
 
-npx prisma generate && npx prisma migrate reset --force && npx prisma migrate dev --name auto_migration
-npm run seed 
-npm run server
+Пересборка БД:
+npx prisma generate && npx prisma migrate reset --force && npx prisma migrate dev --name auto_migration && npm run seed && npm run server
 
 
 pm2 start "cd /root/e_ration_server && npm run server" -n "e_ration_server3006"
