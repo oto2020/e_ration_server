@@ -28,7 +28,7 @@ model NutrientCategory {
 
 model Product {
   id                  Int               @id @default(autoincrement())// Поле id является первичным ключом.
-  name                String   // Название продукта.
+  name                String            @unique // Уникальное название // Название продукта.
   productNutrients    ProductNutrient[]     // Связь с таблицей ProductNutrient, описывающей питательные вещества.
   productMeasures     ProductMeasure[]          // Связь с таблицей ProductMeasure, описывающей измерения продукта.
   productTotalWeights ProductTotalWeight[]    // Связь с таблицей ProductTotalWeight, описывающей нетто-измерение.
