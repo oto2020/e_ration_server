@@ -31,7 +31,7 @@ model Product {
   name                String            @unique // Уникальное название // Название продукта.
   productNutrients    ProductNutrient[]     // Связь с таблицей ProductNutrient, описывающей питательные вещества.
   productMeasures     ProductMeasure[]          // Связь с таблицей ProductMeasure, описывающей измерения продукта.
-  productTotalWeights ProductTotalWeight[]    // Связь с таблицей ProductTotalWeight, описывающей нетто-измерение.
+  productClearWeights ProductClearWeight[]    // Связь с таблицей ProductClearWeight, описывающей нетто-измерение.
   dishProducts        DishProduct[] // Связь с таблицей DishProduct, описывающей блюда, содержащие этот продукт.
   productCategory     ProductCategory   @relation(fields: [categoryId], references: [id]) // Ссылка на категорию через поле categoryId.
   categoryId          Int
@@ -59,7 +59,7 @@ model ProductNutrient {
 }
 
 // ссылается к одному конкретному продукту
-model ProductTotalWeight {
+model ProductClearWeight {
   id        Int     @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
   value     Float // Значение измерения.
   desc      String? // Описание измерения, необязательное.

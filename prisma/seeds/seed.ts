@@ -34,7 +34,7 @@ interface ProductNutrient {
     valueExponent: number;
 }
 
-interface ProductTotalWeight {
+interface ProductClearWeight {
     id: number;
     productId: number;
     value: number;
@@ -63,7 +63,7 @@ async function seedData(): Promise<void> {
     const nutrientData = await loadJson<Nutrient[]>('nutrient.json');
     const nutrientCategoryData = await loadJson<Category[]>('nutrientCategory.json');
     const productNutrientData = await loadJson<ProductNutrient[]>('productNutrient.json');
-    const productTotalWeightData = await loadJson<ProductTotalWeight[]>('productTotalWeight.json');
+    const productClearWeightData = await loadJson<ProductClearWeight[]>('productClearWeight.json');
     const productMeasureData = await loadJson<ProductMeasure[]>('productMeasure.json');
 
     for (const category of productCategoryData) {
@@ -113,14 +113,14 @@ async function seedData(): Promise<void> {
     }
     console.log(`productNutrient готов!`);
 
-    for (const productTotalWeight of productTotalWeightData) {
-        await prisma.productTotalWeight.upsert({
-            where: { id: productTotalWeight.id },
-            update: productTotalWeight,
-            create: productTotalWeight
+    for (const productClearWeight of productClearWeightData) {
+        await prisma.productClearWeight.upsert({
+            where: { id: productClearWeight.id },
+            update: productClearWeight,
+            create: productClearWeight
         });
     }
-    console.log(`productTotalWeight готов!`);
+    console.log(`productClearWeight готов!`);
 
     for (const msr of productMeasureData) {
         await prisma.productMeasure.upsert({
