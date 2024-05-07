@@ -7,7 +7,7 @@
     "seed": "ts-node prisma/seeds/seed.ts",
     "server": "ts-node src/server.ts",
     "generate-api-key": "ts-node src/generateApiKey.ts",
-    "generate": "graphql-codegen"
+    "codegen": "dotenv -e .env -- graphql-codegen"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +29,7 @@
     "typegraphql-prisma": "^0.27.2"
   },
   "devDependencies": {
-    "@types/graphql-fields": "^1.3.9"
+    "@types/graphql-fields": "^1.3.9",
+    "dotenv-cli": "^7.4.2"
   }
 }

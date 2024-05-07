@@ -1,4 +1,7 @@
-schema: http://127.0.0.1:3006/graphql
+schema: 
+ - http://127.0.0.1:3006/graphql:
+      headers:
+        api-key: "${API_KEY}"
 documents: src/**/*.graphql
 generates:
   src/generated/graphql.tsx:
