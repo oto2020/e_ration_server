@@ -1,0 +1,10 @@
+query GetProductGategories {
+  productCategories {
+    id
+    name
+    desc
+    _count {
+      products
+    }
+  }
+}
