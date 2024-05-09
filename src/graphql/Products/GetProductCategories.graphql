@@ -1,4 +1,4 @@
-query GetProductGategories {
+query GetProductCategories {
   productCategories {
     id
     name

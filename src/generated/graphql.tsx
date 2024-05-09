@@ -5173,10 +5173,10 @@ export type FindProductByNameBguQueryVariables = Exact<{
 
 export type FindProductByNameBguQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number, productNutrients: Array<{ __typename?: 'ProductNutrient', id: number, valueString?: string | null, valueAmount: number, valueExponent: number, productId: number, nutrientId: string, nutrient: { __typename?: 'Nutrient', id: string, name: string, categoryId: number } }> }> };
 
-export type GetProductGategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetProductCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProductGategoriesQuery = { __typename?: 'Query', productCategories: Array<{ __typename?: 'ProductCategory', id: number, name: string, desc?: string | null, _count?: { __typename?: 'ProductCategoryCount', products: number } | null }> };
+export type GetProductCategoriesQuery = { __typename?: 'Query', productCategories: Array<{ __typename?: 'ProductCategory', id: number, name: string, desc?: string | null, _count?: { __typename?: 'ProductCategoryCount', products: number } | null }> };
 
 export type GetProductsSkipTakeBguQueryVariables = Exact<{
   skip: Scalars['Int']['input'];
@@ -5242,8 +5242,8 @@ export type FindProductByNameBguQueryHookResult = ReturnType<typeof useFindProdu
 export type FindProductByNameBguLazyQueryHookResult = ReturnType<typeof useFindProductByNameBguLazyQuery>;
 export type FindProductByNameBguSuspenseQueryHookResult = ReturnType<typeof useFindProductByNameBguSuspenseQuery>;
 export type FindProductByNameBguQueryResult = Apollo.QueryResult<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>;
-export const GetProductGategoriesDocument = gql`
-    query GetProductGategories {
+export const GetProductCategoriesDocument = gql`
+    query GetProductCategories {
   productCategories {
     id
     name
@@ -5256,36 +5256,36 @@ export const GetProductGategoriesDocument = gql`
     `;
 
 /**
- * __useGetProductGategoriesQuery__
+ * __useGetProductCategoriesQuery__
  *
- * To run a query within a React component, call `useGetProductGategoriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetProductGategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetProductCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProductCategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetProductGategoriesQuery({
+ * const { data, loading, error } = useGetProductCategoriesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetProductGategoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>) {
+export function useGetProductCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>(GetProductGategoriesDocument, options);
+        return Apollo.useQuery<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>(GetProductCategoriesDocument, options);
       }
-export function useGetProductGategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>) {
+export function useGetProductCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>(GetProductGategoriesDocument, options);
+          return Apollo.useLazyQuery<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>(GetProductCategoriesDocument, options);
         }
-export function useGetProductGategoriesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>) {
+export function useGetProductCategoriesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>(GetProductGategoriesDocument, options);
+          return Apollo.useSuspenseQuery<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>(GetProductCategoriesDocument, options);
         }
-export type GetProductGategoriesQueryHookResult = ReturnType<typeof useGetProductGategoriesQuery>;
-export type GetProductGategoriesLazyQueryHookResult = ReturnType<typeof useGetProductGategoriesLazyQuery>;
-export type GetProductGategoriesSuspenseQueryHookResult = ReturnType<typeof useGetProductGategoriesSuspenseQuery>;
-export type GetProductGategoriesQueryResult = Apollo.QueryResult<GetProductGategoriesQuery, GetProductGategoriesQueryVariables>;
+export type GetProductCategoriesQueryHookResult = ReturnType<typeof useGetProductCategoriesQuery>;
+export type GetProductCategoriesLazyQueryHookResult = ReturnType<typeof useGetProductCategoriesLazyQuery>;
+export type GetProductCategoriesSuspenseQueryHookResult = ReturnType<typeof useGetProductCategoriesSuspenseQuery>;
+export type GetProductCategoriesQueryResult = Apollo.QueryResult<GetProductCategoriesQuery, GetProductCategoriesQueryVariables>;
 export const GetProductsSkipTakeBguDocument = gql`
     query GetProductsSkipTakeBgu($skip: Int!, $take: Int!) {
   products(skip: $skip, take: $take) {
