@@ -5166,77 +5166,36 @@ export type StringWithAggregatesFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type FindProductByTitleQueryVariables = Exact<{
-  searchTerm: Scalars['String']['input'];
+export type FindProductByNameBguQueryVariables = Exact<{
+  term?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type FindProductByTitleQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number, _count?: { __typename?: 'ProductCount', productNutrients: number, productMeasures: number, productClearWeights: number, dishProducts: number } | null, productMeasures: Array<{ __typename?: 'ProductMeasure', id: number, name: string, value: number, desc?: string | null, productId: number }>, productClearWeights: Array<{ __typename?: 'ProductClearWeight', id: number, value: number, desc?: string | null, productId: number }>, dishProducts: Array<{ __typename?: 'DishProduct', id: number, quantity: number, cookCoeff: number, dishId: number, productId: number, dish: { __typename?: 'Dish', id: number, name: string, description?: string | null, _count?: { __typename?: 'DishCount', dishProducts: number, MenuDishes: number } | null, MenuDishes: Array<{ __typename?: 'MenuDish', id: number, quantity: number, dailyMenuId: number, dishId: number, dailyMenu: { __typename?: 'DailyMenu', id: number, date: any, mealType: MealType, _count?: { __typename?: 'DailyMenuCount', MenuDishes: number } | null } }> } }>, productCategory: { __typename?: 'ProductCategory', id: number, name: string, desc?: string | null, _count?: { __typename?: 'ProductCategoryCount', products: number } | null, products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number }> } }> };
+export type FindProductByNameBguQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number, productNutrients: Array<{ __typename?: 'ProductNutrient', id: number, valueString?: string | null, valueAmount: number, valueExponent: number, productId: number, nutrientId: string, nutrient: { __typename?: 'Nutrient', id: string, name: string, categoryId: number } }> }> };
+
+export type GetProductsSkipTakeBguQueryVariables = Exact<{
+  skip: Scalars['Int']['input'];
+  take: Scalars['Int']['input'];
+}>;
 
 
-export const FindProductByTitleDocument = gql`
-    query FindProductByTitle($searchTerm: String!) {
-  products(where: {name: {contains: $searchTerm}}) {
+export type GetProductsSkipTakeBguQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number, productNutrients: Array<{ __typename?: 'ProductNutrient', id: number, valueString?: string | null, valueAmount: number, valueExponent: number, productId: number, nutrientId: string, nutrient: { __typename?: 'Nutrient', id: string, name: string, categoryId: number } }> }> };
+
+
+export const FindProductByNameBguDocument = gql`
+    query FindProductByNameBgu($term: String) {
+  products(where: {name: {contains: $term}}) {
     id
     name
     categoryId
-    _count {
-      productNutrients
-      productMeasures
-      productClearWeights
-      dishProducts
-    }
-    productMeasures {
+    productNutrients(where: {nutrientId: {in: ["b", "g", "u", "kcal"]}}) {
       id
-      name
-      value
-      desc
+      valueString
+      valueAmount
+      valueExponent
       productId
-    }
-    productClearWeights {
-      id
-      value
-      desc
-      productId
-    }
-    dishProducts {
-      id
-      quantity
-      cookCoeff
-      dishId
-      productId
-      dish {
-        id
-        name
-        description
-        _count {
-          dishProducts
-          MenuDishes
-        }
-        MenuDishes {
-          id
-          quantity
-          dailyMenuId
-          dishId
-          dailyMenu {
-            id
-            date
-            mealType
-            _count {
-              MenuDishes
-            }
-          }
-        }
-      }
-    }
-    productCategory {
-      id
-      name
-      desc
-      _count {
-        products
-      }
-      products {
+      nutrientId
+      nutrient {
         id
         name
         categoryId
@@ -5247,34 +5206,90 @@ export const FindProductByTitleDocument = gql`
     `;
 
 /**
- * __useFindProductByTitleQuery__
+ * __useFindProductByNameBguQuery__
  *
- * To run a query within a React component, call `useFindProductByTitleQuery` and pass it any options that fit your needs.
- * When your component renders, `useFindProductByTitleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFindProductByNameBguQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindProductByNameBguQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFindProductByTitleQuery({
+ * const { data, loading, error } = useFindProductByNameBguQuery({
  *   variables: {
- *      searchTerm: // value for 'searchTerm'
+ *      term: // value for 'term'
  *   },
  * });
  */
-export function useFindProductByTitleQuery(baseOptions: Apollo.QueryHookOptions<FindProductByTitleQuery, FindProductByTitleQueryVariables> & ({ variables: FindProductByTitleQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useFindProductByNameBguQuery(baseOptions?: Apollo.QueryHookOptions<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindProductByTitleQuery, FindProductByTitleQueryVariables>(FindProductByTitleDocument, options);
+        return Apollo.useQuery<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>(FindProductByNameBguDocument, options);
       }
-export function useFindProductByTitleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindProductByTitleQuery, FindProductByTitleQueryVariables>) {
+export function useFindProductByNameBguLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindProductByTitleQuery, FindProductByTitleQueryVariables>(FindProductByTitleDocument, options);
+          return Apollo.useLazyQuery<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>(FindProductByNameBguDocument, options);
         }
-export function useFindProductByTitleSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindProductByTitleQuery, FindProductByTitleQueryVariables>) {
+export function useFindProductByNameBguSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FindProductByTitleQuery, FindProductByTitleQueryVariables>(FindProductByTitleDocument, options);
+          return Apollo.useSuspenseQuery<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>(FindProductByNameBguDocument, options);
         }
-export type FindProductByTitleQueryHookResult = ReturnType<typeof useFindProductByTitleQuery>;
-export type FindProductByTitleLazyQueryHookResult = ReturnType<typeof useFindProductByTitleLazyQuery>;
-export type FindProductByTitleSuspenseQueryHookResult = ReturnType<typeof useFindProductByTitleSuspenseQuery>;
-export type FindProductByTitleQueryResult = Apollo.QueryResult<FindProductByTitleQuery, FindProductByTitleQueryVariables>;
+export type FindProductByNameBguQueryHookResult = ReturnType<typeof useFindProductByNameBguQuery>;
+export type FindProductByNameBguLazyQueryHookResult = ReturnType<typeof useFindProductByNameBguLazyQuery>;
+export type FindProductByNameBguSuspenseQueryHookResult = ReturnType<typeof useFindProductByNameBguSuspenseQuery>;
+export type FindProductByNameBguQueryResult = Apollo.QueryResult<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>;
+export const GetProductsSkipTakeBguDocument = gql`
+    query GetProductsSkipTakeBgu($skip: Int!, $take: Int!) {
+  products(skip: $skip, take: $take) {
+    id
+    name
+    categoryId
+    productNutrients(where: {nutrientId: {in: ["b", "g", "u", "kcal"]}}) {
+      id
+      valueString
+      valueAmount
+      valueExponent
+      productId
+      nutrientId
+      nutrient {
+        id
+        name
+        categoryId
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetProductsSkipTakeBguQuery__
+ *
+ * To run a query within a React component, call `useGetProductsSkipTakeBguQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProductsSkipTakeBguQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProductsSkipTakeBguQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useGetProductsSkipTakeBguQuery(baseOptions: Apollo.QueryHookOptions<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables> & ({ variables: GetProductsSkipTakeBguQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables>(GetProductsSkipTakeBguDocument, options);
+      }
+export function useGetProductsSkipTakeBguLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables>(GetProductsSkipTakeBguDocument, options);
+        }
+export function useGetProductsSkipTakeBguSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables>(GetProductsSkipTakeBguDocument, options);
+        }
+export type GetProductsSkipTakeBguQueryHookResult = ReturnType<typeof useGetProductsSkipTakeBguQuery>;
+export type GetProductsSkipTakeBguLazyQueryHookResult = ReturnType<typeof useGetProductsSkipTakeBguLazyQuery>;
+export type GetProductsSkipTakeBguSuspenseQueryHookResult = ReturnType<typeof useGetProductsSkipTakeBguSuspenseQuery>;
+export type GetProductsSkipTakeBguQueryResult = Apollo.QueryResult<GetProductsSkipTakeBguQuery, GetProductsSkipTakeBguQueryVariables>;

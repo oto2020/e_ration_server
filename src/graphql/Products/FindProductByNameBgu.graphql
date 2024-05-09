@@ -1,0 +1,20 @@
+query FindProductByNameBgu($term: String) {
+  products(where: {name: {contains: $term}}) {
+    id
+    name
+    categoryId
+    productNutrients(where: {nutrientId: {in: ["b", "g", "u", "kcal"]}}) {
+      id
+      valueString
+      valueAmount
+      valueExponent
+      productId
+      nutrientId
+      nutrient {
+        id
+        name
+        categoryId
+      }
+    }
+  }
+}

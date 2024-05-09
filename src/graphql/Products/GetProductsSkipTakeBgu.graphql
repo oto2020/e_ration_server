@@ -1,0 +1,20 @@
+query GetProductsSkipTakeBgu($skip: Int!, $take: Int!) {
+  products(skip: $skip, take: $take) {
+    id
+    name
+    categoryId
+    productNutrients(where: {nutrientId: {in: ["b", "g", "u", "kcal"]}}) {
+      id
+      valueString
+      valueAmount
+      valueExponent
+      productId
+      nutrientId
+      nutrient {
+        id
+        name
+        categoryId
+      }
+    }
+  }
+}
