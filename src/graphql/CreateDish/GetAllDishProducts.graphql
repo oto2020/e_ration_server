@@ -1,0 +1,15 @@
+query GetAllDishProducts {
+  dishes {
+    id
+    name
+    description
+    dishProducts {
+      productId
+      product {
+        name
+      }
+      cookCoeff
+      quantity
+    }
+  }
+}
