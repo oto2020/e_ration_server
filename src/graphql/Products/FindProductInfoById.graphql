@@ -1,5 +1,5 @@
-query FindProductInfoByName($term: String) {
-  products(where: {name: {contains: $term}}) {
+query FindProductInfoById($productId: Int) {
+  products(where: {id: {equals: $productId}}) {
     id
     name
     productCategory {
@@ -14,9 +14,14 @@ query FindProductInfoByName($term: String) {
       value
     }
     productNutrients {
+
       nutrientId
       nutrient {
         name
+        categoryId
+        nutrientCategory {
+          name
+        }
       }
       valueAmount
       valueExponent
