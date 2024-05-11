@@ -9,7 +9,7 @@ query GetAllDishProducts {
         name
       }
       cookCoeff
-      quantity
+      amount
     }
   }
 }

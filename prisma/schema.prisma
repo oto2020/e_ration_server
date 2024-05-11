@@ -90,7 +90,7 @@ model DishProduct {
   id          Int     @id @default(autoincrement()) // Идентификатор записи, автогенерируемый.
   dish        Dish    @relation(fields: [dishId], references: [id]) // Связь с блюдом.
   product     Product @relation(fields: [productId], references: [id]) // Связь с продуктом.
-  quantity    Float
+  amount      Float
   cookCoeff   Float   @default(1) // Коэффициент изменения массы при приготовлении, по умолчанию 1.
   dishId      Int // Идентификатор блюда.
   productId   Int // Идентификатор продукта.

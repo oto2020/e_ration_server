@@ -17,10 +17,11 @@ npm run generate-api-key
 Пересборка БД:
 npx prisma generate && rm -rf prisma/migrations && npx prisma migrate reset --force && npx prisma migrate dev --name auto_migration && npm run seed && npm run server
 
-
-В процессе работы сервера можно менять PRODUCTION_MODE в .env для управления необходимостью предоставления api-key в заголовке запроса
+Модификация БД (schema.prisma):
+npx prisma generate && npx prisma migrate dev --name auto_migration && npm run server
 
 Для генерации src/graphql.tsx хуков (при запущенном сервере):
-npm run codegen && git add . && git commit -m "graphql.tsx generate codegen" && git push
+npm run codegen && git add . && git commit -m "codegen" && git push
 
 
+В процессе работы сервера можно менять PRODUCTION_MODE в .env для управления необходимостью предоставления api-key в заголовке запроса

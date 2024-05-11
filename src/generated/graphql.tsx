@@ -926,62 +926,62 @@ export type DishOrderByWithRelationInput = {
 
 export type DishProduct = {
   __typename?: 'DishProduct';
+  amount: Scalars['Float']['output'];
   cookCoeff: Scalars['Float']['output'];
   dish: Dish;
   dishId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   product: Product;
   productId: Scalars['Int']['output'];
-  quantity: Scalars['Float']['output'];
 };
 
 export type DishProductAvgAggregate = {
   __typename?: 'DishProductAvgAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
   cookCoeff?: Maybe<Scalars['Float']['output']>;
   dishId?: Maybe<Scalars['Float']['output']>;
   id?: Maybe<Scalars['Float']['output']>;
   productId?: Maybe<Scalars['Float']['output']>;
-  quantity?: Maybe<Scalars['Float']['output']>;
 };
 
 export type DishProductAvgOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export type DishProductCountAggregate = {
   __typename?: 'DishProductCountAggregate';
   _all: Scalars['Int']['output'];
+  amount: Scalars['Int']['output'];
   cookCoeff: Scalars['Int']['output'];
   dishId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   productId: Scalars['Int']['output'];
-  quantity: Scalars['Int']['output'];
 };
 
 export type DishProductCountOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export type DishProductCreateInput = {
+  amount: Scalars['Float']['input'];
   cookCoeff?: InputMaybe<Scalars['Float']['input']>;
   dish: DishCreateNestedOneWithoutDishProductsInput;
   product: ProductCreateNestedOneWithoutDishProductsInput;
-  quantity: Scalars['Float']['input'];
 };
 
 export type DishProductCreateManyDishInput = {
+  amount: Scalars['Float']['input'];
   cookCoeff?: InputMaybe<Scalars['Float']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   productId: Scalars['Int']['input'];
-  quantity: Scalars['Float']['input'];
 };
 
 export type DishProductCreateManyDishInputEnvelope = {
@@ -990,18 +990,18 @@ export type DishProductCreateManyDishInputEnvelope = {
 };
 
 export type DishProductCreateManyInput = {
+  amount: Scalars['Float']['input'];
   cookCoeff?: InputMaybe<Scalars['Float']['input']>;
   dishId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
   productId: Scalars['Int']['input'];
-  quantity: Scalars['Float']['input'];
 };
 
 export type DishProductCreateManyProductInput = {
+  amount: Scalars['Float']['input'];
   cookCoeff?: InputMaybe<Scalars['Float']['input']>;
   dishId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
-  quantity: Scalars['Float']['input'];
 };
 
 export type DishProductCreateManyProductInputEnvelope = {
@@ -1034,15 +1034,15 @@ export type DishProductCreateOrConnectWithoutProductInput = {
 };
 
 export type DishProductCreateWithoutDishInput = {
+  amount: Scalars['Float']['input'];
   cookCoeff?: InputMaybe<Scalars['Float']['input']>;
   product: ProductCreateNestedOneWithoutDishProductsInput;
-  quantity: Scalars['Float']['input'];
 };
 
 export type DishProductCreateWithoutProductInput = {
+  amount: Scalars['Float']['input'];
   cookCoeff?: InputMaybe<Scalars['Float']['input']>;
   dish: DishCreateNestedOneWithoutDishProductsInput;
-  quantity: Scalars['Float']['input'];
 };
 
 export type DishProductDishIdProductIdCompoundUniqueInput = {
@@ -1057,11 +1057,11 @@ export type DishProductGroupBy = {
   _max?: Maybe<DishProductMaxAggregate>;
   _min?: Maybe<DishProductMinAggregate>;
   _sum?: Maybe<DishProductSumAggregate>;
+  amount: Scalars['Float']['output'];
   cookCoeff: Scalars['Float']['output'];
   dishId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   productId: Scalars['Int']['output'];
-  quantity: Scalars['Float']['output'];
 };
 
 export type DishProductListRelationFilter = {
@@ -1072,36 +1072,36 @@ export type DishProductListRelationFilter = {
 
 export type DishProductMaxAggregate = {
   __typename?: 'DishProductMaxAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
   cookCoeff?: Maybe<Scalars['Float']['output']>;
   dishId?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   productId?: Maybe<Scalars['Int']['output']>;
-  quantity?: Maybe<Scalars['Float']['output']>;
 };
 
 export type DishProductMaxOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export type DishProductMinAggregate = {
   __typename?: 'DishProductMinAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
   cookCoeff?: Maybe<Scalars['Float']['output']>;
   dishId?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   productId?: Maybe<Scalars['Int']['output']>;
-  quantity?: Maybe<Scalars['Float']['output']>;
 };
 
 export type DishProductMinOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export type DishProductOrderByRelationAggregateInput = {
@@ -1114,80 +1114,80 @@ export type DishProductOrderByWithAggregationInput = {
   _max?: InputMaybe<DishProductMaxOrderByAggregateInput>;
   _min?: InputMaybe<DishProductMinOrderByAggregateInput>;
   _sum?: InputMaybe<DishProductSumOrderByAggregateInput>;
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export type DishProductOrderByWithRelationInput = {
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dish?: InputMaybe<DishOrderByWithRelationInput>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   product?: InputMaybe<ProductOrderByWithRelationInput>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export enum DishProductScalarFieldEnum {
+  Amount = 'amount',
   CookCoeff = 'cookCoeff',
   DishId = 'dishId',
   Id = 'id',
-  ProductId = 'productId',
-  Quantity = 'quantity'
+  ProductId = 'productId'
 }
 
 export type DishProductScalarWhereInput = {
   AND?: InputMaybe<Array<DishProductScalarWhereInput>>;
   NOT?: InputMaybe<Array<DishProductScalarWhereInput>>;
   OR?: InputMaybe<Array<DishProductScalarWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
   cookCoeff?: InputMaybe<FloatFilter>;
   dishId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
   productId?: InputMaybe<IntFilter>;
-  quantity?: InputMaybe<FloatFilter>;
 };
 
 export type DishProductScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<Array<DishProductScalarWhereWithAggregatesInput>>;
   NOT?: InputMaybe<Array<DishProductScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<DishProductScalarWhereWithAggregatesInput>>;
+  amount?: InputMaybe<FloatWithAggregatesFilter>;
   cookCoeff?: InputMaybe<FloatWithAggregatesFilter>;
   dishId?: InputMaybe<IntWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
   productId?: InputMaybe<IntWithAggregatesFilter>;
-  quantity?: InputMaybe<FloatWithAggregatesFilter>;
 };
 
 export type DishProductSumAggregate = {
   __typename?: 'DishProductSumAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
   cookCoeff?: Maybe<Scalars['Float']['output']>;
   dishId?: Maybe<Scalars['Int']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   productId?: Maybe<Scalars['Int']['output']>;
-  quantity?: Maybe<Scalars['Float']['output']>;
 };
 
 export type DishProductSumOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
   cookCoeff?: InputMaybe<SortOrder>;
   dishId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   productId?: InputMaybe<SortOrder>;
-  quantity?: InputMaybe<SortOrder>;
 };
 
 export type DishProductUpdateInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   cookCoeff?: InputMaybe<FloatFieldUpdateOperationsInput>;
   dish?: InputMaybe<DishUpdateOneRequiredWithoutDishProductsNestedInput>;
   product?: InputMaybe<ProductUpdateOneRequiredWithoutDishProductsNestedInput>;
-  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type DishProductUpdateManyMutationInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   cookCoeff?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type DishProductUpdateManyWithWhereWithoutDishInput = {
@@ -1239,15 +1239,15 @@ export type DishProductUpdateWithWhereUniqueWithoutProductInput = {
 };
 
 export type DishProductUpdateWithoutDishInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   cookCoeff?: InputMaybe<FloatFieldUpdateOperationsInput>;
   product?: InputMaybe<ProductUpdateOneRequiredWithoutDishProductsNestedInput>;
-  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type DishProductUpdateWithoutProductInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   cookCoeff?: InputMaybe<FloatFieldUpdateOperationsInput>;
   dish?: InputMaybe<DishUpdateOneRequiredWithoutDishProductsNestedInput>;
-  quantity?: InputMaybe<FloatFieldUpdateOperationsInput>;
 };
 
 export type DishProductUpsertWithWhereUniqueWithoutDishInput = {
@@ -1266,19 +1266,20 @@ export type DishProductWhereInput = {
   AND?: InputMaybe<Array<DishProductWhereInput>>;
   NOT?: InputMaybe<Array<DishProductWhereInput>>;
   OR?: InputMaybe<Array<DishProductWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
   cookCoeff?: InputMaybe<FloatFilter>;
   dish?: InputMaybe<DishRelationFilter>;
   dishId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
   product?: InputMaybe<ProductRelationFilter>;
   productId?: InputMaybe<IntFilter>;
-  quantity?: InputMaybe<FloatFilter>;
 };
 
 export type DishProductWhereUniqueInput = {
   AND?: InputMaybe<Array<DishProductWhereInput>>;
   NOT?: InputMaybe<Array<DishProductWhereInput>>;
   OR?: InputMaybe<Array<DishProductWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
   cookCoeff?: InputMaybe<FloatFilter>;
   dish?: InputMaybe<DishRelationFilter>;
   dishId?: InputMaybe<IntFilter>;
@@ -1286,7 +1287,6 @@ export type DishProductWhereUniqueInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   product?: InputMaybe<ProductRelationFilter>;
   productId?: InputMaybe<IntFilter>;
-  quantity?: InputMaybe<FloatFilter>;
 };
 
 export type DishRelationFilter = {
@@ -5789,7 +5789,7 @@ export type GetAllDishNamesQuery = { __typename?: 'Query', dishes: Array<{ __typ
 export type GetAllDishProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllDishProductsQuery = { __typename?: 'Query', dishes: Array<{ __typename?: 'Dish', id: number, name: string, description?: string | null, dishProducts: Array<{ __typename?: 'DishProduct', productId: number, cookCoeff: number, quantity: number, product: { __typename?: 'Product', name: string } }> }> };
+export type GetAllDishProductsQuery = { __typename?: 'Query', dishes: Array<{ __typename?: 'Dish', id: number, name: string, description?: string | null, dishProducts: Array<{ __typename?: 'DishProduct', productId: number, cookCoeff: number, amount: number, product: { __typename?: 'Product', name: string } }> }> };
 
 export type FindProductByNameBguQueryVariables = Exact<{
   term?: InputMaybe<Scalars['String']['input']>;
@@ -6006,7 +6006,7 @@ export const GetAllDishProductsDocument = gql`
         name
       }
       cookCoeff
-      quantity
+      amount
     }
   }
 }
