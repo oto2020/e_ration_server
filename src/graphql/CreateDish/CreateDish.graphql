@@ -1,0 +1,7 @@
+mutation CreateDish($data: DishCreateInput!) {
+  createOneDish(data: $data) {
+    id
+    name
+    description
+  }
+}

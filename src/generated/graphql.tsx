@@ -5166,6 +5166,13 @@ export type StringWithAggregatesFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type CreateDishMutationVariables = Exact<{
+  data: DishCreateInput;
+}>;
+
+
+export type CreateDishMutation = { __typename?: 'Mutation', createOneDish: { __typename?: 'Dish', id: number, name: string, description?: string | null } };
+
 export type FindProductIdByNameQueryVariables = Exact<{
   term?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -5201,6 +5208,41 @@ export type GetProductsSkipTakeBguQueryVariables = Exact<{
 export type GetProductsSkipTakeBguQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number, productNutrients: Array<{ __typename?: 'ProductNutrient', id: number, valueString?: string | null, valueAmount: number, valueExponent: number, productId: number, nutrientId: string, nutrient: { __typename?: 'Nutrient', id: string, name: string, categoryId: number } }> }> };
 
 
+export const CreateDishDocument = gql`
+    mutation CreateDish($data: DishCreateInput!) {
+  createOneDish(data: $data) {
+    id
+    name
+    description
+  }
+}
+    `;
+export type CreateDishMutationFn = Apollo.MutationFunction<CreateDishMutation, CreateDishMutationVariables>;
+
+/**
+ * __useCreateDishMutation__
+ *
+ * To run a mutation, you first call `useCreateDishMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateDishMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createDishMutation, { data, loading, error }] = useCreateDishMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateDishMutation(baseOptions?: Apollo.MutationHookOptions<CreateDishMutation, CreateDishMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateDishMutation, CreateDishMutationVariables>(CreateDishDocument, options);
+      }
+export type CreateDishMutationHookResult = ReturnType<typeof useCreateDishMutation>;
+export type CreateDishMutationResult = Apollo.MutationResult<CreateDishMutation>;
+export type CreateDishMutationOptions = Apollo.BaseMutationOptions<CreateDishMutation, CreateDishMutationVariables>;
 export const FindProductIdByNameDocument = gql`
     query FindProductIdByName($term: String) {
   products(where: {name: {contains: $term}}) {
