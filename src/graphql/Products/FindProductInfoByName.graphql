@@ -1,0 +1,26 @@
+query FindProductInfoByName($term: String) {
+  products(where: {name: {contains: $term}}) {
+    id
+    name
+    productCategory {
+      name
+    }
+    productMeasures {
+      name
+      desc
+      value
+    }
+    productClearWeights {
+      value
+    }
+    productNutrients {
+      nutrientId
+      nutrient {
+        name
+      }
+      valueAmount
+      valueExponent
+      valueString
+    }
+  }
+}

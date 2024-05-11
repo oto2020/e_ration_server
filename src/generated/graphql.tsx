@@ -5173,6 +5173,20 @@ export type FindProductByNameBguQueryVariables = Exact<{
 
 export type FindProductByNameBguQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, categoryId: number, productNutrients: Array<{ __typename?: 'ProductNutrient', id: number, valueString?: string | null, valueAmount: number, valueExponent: number, productId: number, nutrientId: string, nutrient: { __typename?: 'Nutrient', id: string, name: string, categoryId: number } }> }> };
 
+export type FindProductIdByNameQueryVariables = Exact<{
+  term?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type FindProductIdByNameQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string }> };
+
+export type FindProductInfoByNameQueryVariables = Exact<{
+  term?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type FindProductInfoByNameQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, productCategory: { __typename?: 'ProductCategory', name: string }, productMeasures: Array<{ __typename?: 'ProductMeasure', name: string, desc?: string | null, value: number }>, productClearWeights: Array<{ __typename?: 'ProductClearWeight', value: number }>, productNutrients: Array<{ __typename?: 'ProductNutrient', nutrientId: string, valueAmount: number, valueExponent: number, valueString?: string | null, nutrient: { __typename?: 'Nutrient', name: string } }> }> };
+
 export type GetProductCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5242,6 +5256,108 @@ export type FindProductByNameBguQueryHookResult = ReturnType<typeof useFindProdu
 export type FindProductByNameBguLazyQueryHookResult = ReturnType<typeof useFindProductByNameBguLazyQuery>;
 export type FindProductByNameBguSuspenseQueryHookResult = ReturnType<typeof useFindProductByNameBguSuspenseQuery>;
 export type FindProductByNameBguQueryResult = Apollo.QueryResult<FindProductByNameBguQuery, FindProductByNameBguQueryVariables>;
+export const FindProductIdByNameDocument = gql`
+    query FindProductIdByName($term: String) {
+  products(where: {name: {contains: $term}}) {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useFindProductIdByNameQuery__
+ *
+ * To run a query within a React component, call `useFindProductIdByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindProductIdByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindProductIdByNameQuery({
+ *   variables: {
+ *      term: // value for 'term'
+ *   },
+ * });
+ */
+export function useFindProductIdByNameQuery(baseOptions?: Apollo.QueryHookOptions<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>(FindProductIdByNameDocument, options);
+      }
+export function useFindProductIdByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>(FindProductIdByNameDocument, options);
+        }
+export function useFindProductIdByNameSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>(FindProductIdByNameDocument, options);
+        }
+export type FindProductIdByNameQueryHookResult = ReturnType<typeof useFindProductIdByNameQuery>;
+export type FindProductIdByNameLazyQueryHookResult = ReturnType<typeof useFindProductIdByNameLazyQuery>;
+export type FindProductIdByNameSuspenseQueryHookResult = ReturnType<typeof useFindProductIdByNameSuspenseQuery>;
+export type FindProductIdByNameQueryResult = Apollo.QueryResult<FindProductIdByNameQuery, FindProductIdByNameQueryVariables>;
+export const FindProductInfoByNameDocument = gql`
+    query FindProductInfoByName($term: String) {
+  products(where: {name: {contains: $term}}) {
+    id
+    name
+    productCategory {
+      name
+    }
+    productMeasures {
+      name
+      desc
+      value
+    }
+    productClearWeights {
+      value
+    }
+    productNutrients {
+      nutrientId
+      nutrient {
+        name
+      }
+      valueAmount
+      valueExponent
+      valueString
+    }
+  }
+}
+    `;
+
+/**
+ * __useFindProductInfoByNameQuery__
+ *
+ * To run a query within a React component, call `useFindProductInfoByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindProductInfoByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindProductInfoByNameQuery({
+ *   variables: {
+ *      term: // value for 'term'
+ *   },
+ * });
+ */
+export function useFindProductInfoByNameQuery(baseOptions?: Apollo.QueryHookOptions<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>(FindProductInfoByNameDocument, options);
+      }
+export function useFindProductInfoByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>(FindProductInfoByNameDocument, options);
+        }
+export function useFindProductInfoByNameSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>(FindProductInfoByNameDocument, options);
+        }
+export type FindProductInfoByNameQueryHookResult = ReturnType<typeof useFindProductInfoByNameQuery>;
+export type FindProductInfoByNameLazyQueryHookResult = ReturnType<typeof useFindProductInfoByNameLazyQuery>;
+export type FindProductInfoByNameSuspenseQueryHookResult = ReturnType<typeof useFindProductInfoByNameSuspenseQuery>;
+export type FindProductInfoByNameQueryResult = Apollo.QueryResult<FindProductInfoByNameQuery, FindProductInfoByNameQueryVariables>;
 export const GetProductCategoriesDocument = gql`
     query GetProductCategories {
   productCategories {

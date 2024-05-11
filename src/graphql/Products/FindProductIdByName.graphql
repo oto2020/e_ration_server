@@ -1,0 +1,6 @@
+query FindProductIdByName($term: String) {
+  products(where: {name: {contains: $term}}) {
+    id
+    name
+  }
+}
