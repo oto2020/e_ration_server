@@ -41,6 +41,7 @@ model Nutrient {
   id         String  @id // Идентификатор питательного вещества.
   name       String // Название питательного вещества.
   productNutrients   ProductNutrient[] // Связь с таблицей ProductNutrient, описывающей продукты, содержащие это вещество.
+  dishNutrients   DishNutrient[]  // Добавление обратной связи
   nutrientCategory   NutrientCategory  @relation(fields: [categoryId], references: [id]) // Связь с категорией питательных веществ.
   categoryId  Int
 }
@@ -81,6 +82,7 @@ model Dish {
   name              String       @unique // Уникальное название блюда.
   description       String? // Описание блюда, необязательное.
   dishProducts      DishProduct[] // Связь с таблицей DishProduct, описывающей продукты в этом блюде.
+  dishNutrients     DishNutrient[]  // Добавление связи с DishNutrient
   MenuDishes        MenuDish[] // Связь с таблицей MenuDish, описывающей, в каких меню используется это блюдо.
 }
 
@@ -94,6 +96,17 @@ model DishProduct {
   productId   Int // Идентификатор продукта.
   @@unique([dishId, productId])
 }
+
+model DishNutrient {
+  id         Int     @id @default(autoincrement())
+  dish       Dish    @relation(fields: [dishId], references: [id])
+  nutrient   Nutrient @relation(fields: [nutrientId], references: [id])
+  amount     Float  // Количество нутриента в блюде
+  dishId     Int    // Внешний ключ для Dish
+  nutrientId String // Внешний ключ для Nutrient
+  @@unique([dishId, nutrientId])
+}
+
 
 // Перечисление типов приемов пищи
 enum MealType {

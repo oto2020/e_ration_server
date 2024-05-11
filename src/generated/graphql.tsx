@@ -41,6 +41,15 @@ export type AggregateDish = {
   _sum?: Maybe<DishSumAggregate>;
 };
 
+export type AggregateDishNutrient = {
+  __typename?: 'AggregateDishNutrient';
+  _avg?: Maybe<DishNutrientAvgAggregate>;
+  _count?: Maybe<DishNutrientCountAggregate>;
+  _max?: Maybe<DishNutrientMaxAggregate>;
+  _min?: Maybe<DishNutrientMinAggregate>;
+  _sum?: Maybe<DishNutrientSumAggregate>;
+};
+
 export type AggregateDishProduct = {
   __typename?: 'AggregateDishProduct';
   _avg?: Maybe<DishProductAvgAggregate>;
@@ -376,6 +385,7 @@ export type Dish = {
   MenuDishes: Array<MenuDish>;
   _count?: Maybe<DishCount>;
   description?: Maybe<Scalars['String']['output']>;
+  dishNutrients: Array<DishNutrient>;
   dishProducts: Array<DishProduct>;
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
@@ -389,6 +399,16 @@ export type DishMenuDishesArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MenuDishWhereInput>;
+};
+
+
+export type DishDishNutrientsArgs = {
+  cursor?: InputMaybe<DishNutrientWhereUniqueInput>;
+  distinct?: InputMaybe<Array<DishNutrientScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -413,12 +433,18 @@ export type DishAvgOrderByAggregateInput = {
 export type DishCount = {
   __typename?: 'DishCount';
   MenuDishes: Scalars['Int']['output'];
+  dishNutrients: Scalars['Int']['output'];
   dishProducts: Scalars['Int']['output'];
 };
 
 
 export type DishCountMenuDishesArgs = {
   where?: InputMaybe<MenuDishWhereInput>;
+};
+
+
+export type DishCountDishNutrientsArgs = {
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -443,6 +469,7 @@ export type DishCountOrderByAggregateInput = {
 export type DishCreateInput = {
   MenuDishes?: InputMaybe<MenuDishCreateNestedManyWithoutDishInput>;
   description?: InputMaybe<Scalars['String']['input']>;
+  dishNutrients?: InputMaybe<DishNutrientCreateNestedManyWithoutDishInput>;
   dishProducts?: InputMaybe<DishProductCreateNestedManyWithoutDishInput>;
   name: Scalars['String']['input'];
 };
@@ -451,6 +478,12 @@ export type DishCreateManyInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   name: Scalars['String']['input'];
+};
+
+export type DishCreateNestedOneWithoutDishNutrientsInput = {
+  connect?: InputMaybe<DishWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<DishCreateOrConnectWithoutDishNutrientsInput>;
+  create?: InputMaybe<DishCreateWithoutDishNutrientsInput>;
 };
 
 export type DishCreateNestedOneWithoutDishProductsInput = {
@@ -465,6 +498,11 @@ export type DishCreateNestedOneWithoutMenuDishesInput = {
   create?: InputMaybe<DishCreateWithoutMenuDishesInput>;
 };
 
+export type DishCreateOrConnectWithoutDishNutrientsInput = {
+  create: DishCreateWithoutDishNutrientsInput;
+  where: DishWhereUniqueInput;
+};
+
 export type DishCreateOrConnectWithoutDishProductsInput = {
   create: DishCreateWithoutDishProductsInput;
   where: DishWhereUniqueInput;
@@ -475,14 +513,23 @@ export type DishCreateOrConnectWithoutMenuDishesInput = {
   where: DishWhereUniqueInput;
 };
 
+export type DishCreateWithoutDishNutrientsInput = {
+  MenuDishes?: InputMaybe<MenuDishCreateNestedManyWithoutDishInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  dishProducts?: InputMaybe<DishProductCreateNestedManyWithoutDishInput>;
+  name: Scalars['String']['input'];
+};
+
 export type DishCreateWithoutDishProductsInput = {
   MenuDishes?: InputMaybe<MenuDishCreateNestedManyWithoutDishInput>;
   description?: InputMaybe<Scalars['String']['input']>;
+  dishNutrients?: InputMaybe<DishNutrientCreateNestedManyWithoutDishInput>;
   name: Scalars['String']['input'];
 };
 
 export type DishCreateWithoutMenuDishesInput = {
   description?: InputMaybe<Scalars['String']['input']>;
+  dishNutrients?: InputMaybe<DishNutrientCreateNestedManyWithoutDishInput>;
   dishProducts?: InputMaybe<DishProductCreateNestedManyWithoutDishInput>;
   name: Scalars['String']['input'];
 };
@@ -525,6 +572,338 @@ export type DishMinOrderByAggregateInput = {
   name?: InputMaybe<SortOrder>;
 };
 
+export type DishNutrient = {
+  __typename?: 'DishNutrient';
+  amount: Scalars['Float']['output'];
+  dish: Dish;
+  dishId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  nutrient: Nutrient;
+  nutrientId: Scalars['String']['output'];
+};
+
+export type DishNutrientAvgAggregate = {
+  __typename?: 'DishNutrientAvgAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
+  dishId?: Maybe<Scalars['Float']['output']>;
+  id?: Maybe<Scalars['Float']['output']>;
+};
+
+export type DishNutrientAvgOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientCountAggregate = {
+  __typename?: 'DishNutrientCountAggregate';
+  _all: Scalars['Int']['output'];
+  amount: Scalars['Int']['output'];
+  dishId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  nutrientId: Scalars['Int']['output'];
+};
+
+export type DishNutrientCountOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  nutrientId?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientCreateInput = {
+  amount: Scalars['Float']['input'];
+  dish: DishCreateNestedOneWithoutDishNutrientsInput;
+  nutrient: NutrientCreateNestedOneWithoutDishNutrientsInput;
+};
+
+export type DishNutrientCreateManyDishInput = {
+  amount: Scalars['Float']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  nutrientId: Scalars['String']['input'];
+};
+
+export type DishNutrientCreateManyDishInputEnvelope = {
+  data: Array<DishNutrientCreateManyDishInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DishNutrientCreateManyInput = {
+  amount: Scalars['Float']['input'];
+  dishId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  nutrientId: Scalars['String']['input'];
+};
+
+export type DishNutrientCreateManyNutrientInput = {
+  amount: Scalars['Float']['input'];
+  dishId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type DishNutrientCreateManyNutrientInputEnvelope = {
+  data: Array<DishNutrientCreateManyNutrientInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type DishNutrientCreateNestedManyWithoutDishInput = {
+  connect?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DishNutrientCreateOrConnectWithoutDishInput>>;
+  create?: InputMaybe<Array<DishNutrientCreateWithoutDishInput>>;
+  createMany?: InputMaybe<DishNutrientCreateManyDishInputEnvelope>;
+};
+
+export type DishNutrientCreateNestedManyWithoutNutrientInput = {
+  connect?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DishNutrientCreateOrConnectWithoutNutrientInput>>;
+  create?: InputMaybe<Array<DishNutrientCreateWithoutNutrientInput>>;
+  createMany?: InputMaybe<DishNutrientCreateManyNutrientInputEnvelope>;
+};
+
+export type DishNutrientCreateOrConnectWithoutDishInput = {
+  create: DishNutrientCreateWithoutDishInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+export type DishNutrientCreateOrConnectWithoutNutrientInput = {
+  create: DishNutrientCreateWithoutNutrientInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+export type DishNutrientCreateWithoutDishInput = {
+  amount: Scalars['Float']['input'];
+  nutrient: NutrientCreateNestedOneWithoutDishNutrientsInput;
+};
+
+export type DishNutrientCreateWithoutNutrientInput = {
+  amount: Scalars['Float']['input'];
+  dish: DishCreateNestedOneWithoutDishNutrientsInput;
+};
+
+export type DishNutrientDishIdNutrientIdCompoundUniqueInput = {
+  dishId: Scalars['Int']['input'];
+  nutrientId: Scalars['String']['input'];
+};
+
+export type DishNutrientGroupBy = {
+  __typename?: 'DishNutrientGroupBy';
+  _avg?: Maybe<DishNutrientAvgAggregate>;
+  _count?: Maybe<DishNutrientCountAggregate>;
+  _max?: Maybe<DishNutrientMaxAggregate>;
+  _min?: Maybe<DishNutrientMinAggregate>;
+  _sum?: Maybe<DishNutrientSumAggregate>;
+  amount: Scalars['Float']['output'];
+  dishId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  nutrientId: Scalars['String']['output'];
+};
+
+export type DishNutrientListRelationFilter = {
+  every?: InputMaybe<DishNutrientWhereInput>;
+  none?: InputMaybe<DishNutrientWhereInput>;
+  some?: InputMaybe<DishNutrientWhereInput>;
+};
+
+export type DishNutrientMaxAggregate = {
+  __typename?: 'DishNutrientMaxAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
+  dishId?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  nutrientId?: Maybe<Scalars['String']['output']>;
+};
+
+export type DishNutrientMaxOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  nutrientId?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientMinAggregate = {
+  __typename?: 'DishNutrientMinAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
+  dishId?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  nutrientId?: Maybe<Scalars['String']['output']>;
+};
+
+export type DishNutrientMinOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  nutrientId?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientOrderByWithAggregationInput = {
+  _avg?: InputMaybe<DishNutrientAvgOrderByAggregateInput>;
+  _count?: InputMaybe<DishNutrientCountOrderByAggregateInput>;
+  _max?: InputMaybe<DishNutrientMaxOrderByAggregateInput>;
+  _min?: InputMaybe<DishNutrientMinOrderByAggregateInput>;
+  _sum?: InputMaybe<DishNutrientSumOrderByAggregateInput>;
+  amount?: InputMaybe<SortOrder>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  nutrientId?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientOrderByWithRelationInput = {
+  amount?: InputMaybe<SortOrder>;
+  dish?: InputMaybe<DishOrderByWithRelationInput>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  nutrient?: InputMaybe<NutrientOrderByWithRelationInput>;
+  nutrientId?: InputMaybe<SortOrder>;
+};
+
+export enum DishNutrientScalarFieldEnum {
+  Amount = 'amount',
+  DishId = 'dishId',
+  Id = 'id',
+  NutrientId = 'nutrientId'
+}
+
+export type DishNutrientScalarWhereInput = {
+  AND?: InputMaybe<Array<DishNutrientScalarWhereInput>>;
+  NOT?: InputMaybe<Array<DishNutrientScalarWhereInput>>;
+  OR?: InputMaybe<Array<DishNutrientScalarWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  dishId?: InputMaybe<IntFilter>;
+  id?: InputMaybe<IntFilter>;
+  nutrientId?: InputMaybe<StringFilter>;
+};
+
+export type DishNutrientScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<DishNutrientScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<DishNutrientScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<DishNutrientScalarWhereWithAggregatesInput>>;
+  amount?: InputMaybe<FloatWithAggregatesFilter>;
+  dishId?: InputMaybe<IntWithAggregatesFilter>;
+  id?: InputMaybe<IntWithAggregatesFilter>;
+  nutrientId?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type DishNutrientSumAggregate = {
+  __typename?: 'DishNutrientSumAggregate';
+  amount?: Maybe<Scalars['Float']['output']>;
+  dishId?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type DishNutrientSumOrderByAggregateInput = {
+  amount?: InputMaybe<SortOrder>;
+  dishId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+};
+
+export type DishNutrientUpdateInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  dish?: InputMaybe<DishUpdateOneRequiredWithoutDishNutrientsNestedInput>;
+  nutrient?: InputMaybe<NutrientUpdateOneRequiredWithoutDishNutrientsNestedInput>;
+};
+
+export type DishNutrientUpdateManyMutationInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+};
+
+export type DishNutrientUpdateManyWithWhereWithoutDishInput = {
+  data: DishNutrientUpdateManyMutationInput;
+  where: DishNutrientScalarWhereInput;
+};
+
+export type DishNutrientUpdateManyWithWhereWithoutNutrientInput = {
+  data: DishNutrientUpdateManyMutationInput;
+  where: DishNutrientScalarWhereInput;
+};
+
+export type DishNutrientUpdateManyWithoutDishNestedInput = {
+  connect?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DishNutrientCreateOrConnectWithoutDishInput>>;
+  create?: InputMaybe<Array<DishNutrientCreateWithoutDishInput>>;
+  createMany?: InputMaybe<DishNutrientCreateManyDishInputEnvelope>;
+  delete?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<DishNutrientScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  set?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  update?: InputMaybe<Array<DishNutrientUpdateWithWhereUniqueWithoutDishInput>>;
+  updateMany?: InputMaybe<Array<DishNutrientUpdateManyWithWhereWithoutDishInput>>;
+  upsert?: InputMaybe<Array<DishNutrientUpsertWithWhereUniqueWithoutDishInput>>;
+};
+
+export type DishNutrientUpdateManyWithoutNutrientNestedInput = {
+  connect?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DishNutrientCreateOrConnectWithoutNutrientInput>>;
+  create?: InputMaybe<Array<DishNutrientCreateWithoutNutrientInput>>;
+  createMany?: InputMaybe<DishNutrientCreateManyNutrientInputEnvelope>;
+  delete?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<DishNutrientScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  set?: InputMaybe<Array<DishNutrientWhereUniqueInput>>;
+  update?: InputMaybe<Array<DishNutrientUpdateWithWhereUniqueWithoutNutrientInput>>;
+  updateMany?: InputMaybe<Array<DishNutrientUpdateManyWithWhereWithoutNutrientInput>>;
+  upsert?: InputMaybe<Array<DishNutrientUpsertWithWhereUniqueWithoutNutrientInput>>;
+};
+
+export type DishNutrientUpdateWithWhereUniqueWithoutDishInput = {
+  data: DishNutrientUpdateWithoutDishInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+export type DishNutrientUpdateWithWhereUniqueWithoutNutrientInput = {
+  data: DishNutrientUpdateWithoutNutrientInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+export type DishNutrientUpdateWithoutDishInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  nutrient?: InputMaybe<NutrientUpdateOneRequiredWithoutDishNutrientsNestedInput>;
+};
+
+export type DishNutrientUpdateWithoutNutrientInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  dish?: InputMaybe<DishUpdateOneRequiredWithoutDishNutrientsNestedInput>;
+};
+
+export type DishNutrientUpsertWithWhereUniqueWithoutDishInput = {
+  create: DishNutrientCreateWithoutDishInput;
+  update: DishNutrientUpdateWithoutDishInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+export type DishNutrientUpsertWithWhereUniqueWithoutNutrientInput = {
+  create: DishNutrientCreateWithoutNutrientInput;
+  update: DishNutrientUpdateWithoutNutrientInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+export type DishNutrientWhereInput = {
+  AND?: InputMaybe<Array<DishNutrientWhereInput>>;
+  NOT?: InputMaybe<Array<DishNutrientWhereInput>>;
+  OR?: InputMaybe<Array<DishNutrientWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  dish?: InputMaybe<DishRelationFilter>;
+  dishId?: InputMaybe<IntFilter>;
+  id?: InputMaybe<IntFilter>;
+  nutrient?: InputMaybe<NutrientRelationFilter>;
+  nutrientId?: InputMaybe<StringFilter>;
+};
+
+export type DishNutrientWhereUniqueInput = {
+  AND?: InputMaybe<Array<DishNutrientWhereInput>>;
+  NOT?: InputMaybe<Array<DishNutrientWhereInput>>;
+  OR?: InputMaybe<Array<DishNutrientWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  dish?: InputMaybe<DishRelationFilter>;
+  dishId?: InputMaybe<IntFilter>;
+  dishId_nutrientId?: InputMaybe<DishNutrientDishIdNutrientIdCompoundUniqueInput>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  nutrient?: InputMaybe<NutrientRelationFilter>;
+  nutrientId?: InputMaybe<StringFilter>;
+};
+
 export type DishOrderByWithAggregationInput = {
   _avg?: InputMaybe<DishAvgOrderByAggregateInput>;
   _count?: InputMaybe<DishCountOrderByAggregateInput>;
@@ -539,6 +918,7 @@ export type DishOrderByWithAggregationInput = {
 export type DishOrderByWithRelationInput = {
   MenuDishes?: InputMaybe<MenuDishOrderByRelationAggregateInput>;
   description?: InputMaybe<SortOrderInput>;
+  dishNutrients?: InputMaybe<DishNutrientOrderByRelationAggregateInput>;
   dishProducts?: InputMaybe<DishProductOrderByRelationAggregateInput>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -941,6 +1321,7 @@ export type DishSumOrderByAggregateInput = {
 export type DishUpdateInput = {
   MenuDishes?: InputMaybe<MenuDishUpdateManyWithoutDishNestedInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  dishNutrients?: InputMaybe<DishNutrientUpdateManyWithoutDishNestedInput>;
   dishProducts?: InputMaybe<DishProductUpdateManyWithoutDishNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
@@ -948,6 +1329,14 @@ export type DishUpdateInput = {
 export type DishUpdateManyMutationInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type DishUpdateOneRequiredWithoutDishNutrientsNestedInput = {
+  connect?: InputMaybe<DishWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<DishCreateOrConnectWithoutDishNutrientsInput>;
+  create?: InputMaybe<DishCreateWithoutDishNutrientsInput>;
+  update?: InputMaybe<DishUpdateToOneWithWhereWithoutDishNutrientsInput>;
+  upsert?: InputMaybe<DishUpsertWithoutDishNutrientsInput>;
 };
 
 export type DishUpdateOneRequiredWithoutDishProductsNestedInput = {
@@ -966,6 +1355,11 @@ export type DishUpdateOneRequiredWithoutMenuDishesNestedInput = {
   upsert?: InputMaybe<DishUpsertWithoutMenuDishesInput>;
 };
 
+export type DishUpdateToOneWithWhereWithoutDishNutrientsInput = {
+  data: DishUpdateWithoutDishNutrientsInput;
+  where?: InputMaybe<DishWhereInput>;
+};
+
 export type DishUpdateToOneWithWhereWithoutDishProductsInput = {
   data: DishUpdateWithoutDishProductsInput;
   where?: InputMaybe<DishWhereInput>;
@@ -976,16 +1370,31 @@ export type DishUpdateToOneWithWhereWithoutMenuDishesInput = {
   where?: InputMaybe<DishWhereInput>;
 };
 
+export type DishUpdateWithoutDishNutrientsInput = {
+  MenuDishes?: InputMaybe<MenuDishUpdateManyWithoutDishNestedInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  dishProducts?: InputMaybe<DishProductUpdateManyWithoutDishNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
 export type DishUpdateWithoutDishProductsInput = {
   MenuDishes?: InputMaybe<MenuDishUpdateManyWithoutDishNestedInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  dishNutrients?: InputMaybe<DishNutrientUpdateManyWithoutDishNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type DishUpdateWithoutMenuDishesInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  dishNutrients?: InputMaybe<DishNutrientUpdateManyWithoutDishNestedInput>;
   dishProducts?: InputMaybe<DishProductUpdateManyWithoutDishNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type DishUpsertWithoutDishNutrientsInput = {
+  create: DishCreateWithoutDishNutrientsInput;
+  update: DishUpdateWithoutDishNutrientsInput;
+  where?: InputMaybe<DishWhereInput>;
 };
 
 export type DishUpsertWithoutDishProductsInput = {
@@ -1006,6 +1415,7 @@ export type DishWhereInput = {
   NOT?: InputMaybe<Array<DishWhereInput>>;
   OR?: InputMaybe<Array<DishWhereInput>>;
   description?: InputMaybe<StringNullableFilter>;
+  dishNutrients?: InputMaybe<DishNutrientListRelationFilter>;
   dishProducts?: InputMaybe<DishProductListRelationFilter>;
   id?: InputMaybe<IntFilter>;
   name?: InputMaybe<StringFilter>;
@@ -1017,6 +1427,7 @@ export type DishWhereUniqueInput = {
   NOT?: InputMaybe<Array<DishWhereInput>>;
   OR?: InputMaybe<Array<DishWhereInput>>;
   description?: InputMaybe<StringNullableFilter>;
+  dishNutrients?: InputMaybe<DishNutrientListRelationFilter>;
   dishProducts?: InputMaybe<DishProductListRelationFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -1462,6 +1873,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createManyDailyMenu: AffectedRowsOutput;
   createManyDish: AffectedRowsOutput;
+  createManyDishNutrient: AffectedRowsOutput;
   createManyDishProduct: AffectedRowsOutput;
   createManyMenuDish: AffectedRowsOutput;
   createManyNutrient: AffectedRowsOutput;
@@ -1473,6 +1885,7 @@ export type Mutation = {
   createManyProductNutrient: AffectedRowsOutput;
   createOneDailyMenu: DailyMenu;
   createOneDish: Dish;
+  createOneDishNutrient: DishNutrient;
   createOneDishProduct: DishProduct;
   createOneMenuDish: MenuDish;
   createOneNutrient: Nutrient;
@@ -1484,6 +1897,7 @@ export type Mutation = {
   createOneProductNutrient: ProductNutrient;
   deleteManyDailyMenu: AffectedRowsOutput;
   deleteManyDish: AffectedRowsOutput;
+  deleteManyDishNutrient: AffectedRowsOutput;
   deleteManyDishProduct: AffectedRowsOutput;
   deleteManyMenuDish: AffectedRowsOutput;
   deleteManyNutrient: AffectedRowsOutput;
@@ -1495,6 +1909,7 @@ export type Mutation = {
   deleteManyProductNutrient: AffectedRowsOutput;
   deleteOneDailyMenu?: Maybe<DailyMenu>;
   deleteOneDish?: Maybe<Dish>;
+  deleteOneDishNutrient?: Maybe<DishNutrient>;
   deleteOneDishProduct?: Maybe<DishProduct>;
   deleteOneMenuDish?: Maybe<MenuDish>;
   deleteOneNutrient?: Maybe<Nutrient>;
@@ -1506,6 +1921,7 @@ export type Mutation = {
   deleteOneProductNutrient?: Maybe<ProductNutrient>;
   updateManyDailyMenu: AffectedRowsOutput;
   updateManyDish: AffectedRowsOutput;
+  updateManyDishNutrient: AffectedRowsOutput;
   updateManyDishProduct: AffectedRowsOutput;
   updateManyMenuDish: AffectedRowsOutput;
   updateManyNutrient: AffectedRowsOutput;
@@ -1517,6 +1933,7 @@ export type Mutation = {
   updateManyProductNutrient: AffectedRowsOutput;
   updateOneDailyMenu?: Maybe<DailyMenu>;
   updateOneDish?: Maybe<Dish>;
+  updateOneDishNutrient?: Maybe<DishNutrient>;
   updateOneDishProduct?: Maybe<DishProduct>;
   updateOneMenuDish?: Maybe<MenuDish>;
   updateOneNutrient?: Maybe<Nutrient>;
@@ -1528,6 +1945,7 @@ export type Mutation = {
   updateOneProductNutrient?: Maybe<ProductNutrient>;
   upsertOneDailyMenu: DailyMenu;
   upsertOneDish: Dish;
+  upsertOneDishNutrient: DishNutrient;
   upsertOneDishProduct: DishProduct;
   upsertOneMenuDish: MenuDish;
   upsertOneNutrient: Nutrient;
@@ -1548,6 +1966,12 @@ export type MutationCreateManyDailyMenuArgs = {
 
 export type MutationCreateManyDishArgs = {
   data: Array<DishCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type MutationCreateManyDishNutrientArgs = {
+  data: Array<DishNutrientCreateManyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1616,6 +2040,11 @@ export type MutationCreateOneDishArgs = {
 };
 
 
+export type MutationCreateOneDishNutrientArgs = {
+  data: DishNutrientCreateInput;
+};
+
+
 export type MutationCreateOneDishProductArgs = {
   data: DishProductCreateInput;
 };
@@ -1668,6 +2097,11 @@ export type MutationDeleteManyDailyMenuArgs = {
 
 export type MutationDeleteManyDishArgs = {
   where?: InputMaybe<DishWhereInput>;
+};
+
+
+export type MutationDeleteManyDishNutrientArgs = {
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -1726,6 +2160,11 @@ export type MutationDeleteOneDishArgs = {
 };
 
 
+export type MutationDeleteOneDishNutrientArgs = {
+  where: DishNutrientWhereUniqueInput;
+};
+
+
 export type MutationDeleteOneDishProductArgs = {
   where: DishProductWhereUniqueInput;
 };
@@ -1780,6 +2219,12 @@ export type MutationUpdateManyDailyMenuArgs = {
 export type MutationUpdateManyDishArgs = {
   data: DishUpdateManyMutationInput;
   where?: InputMaybe<DishWhereInput>;
+};
+
+
+export type MutationUpdateManyDishNutrientArgs = {
+  data: DishNutrientUpdateManyMutationInput;
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -1849,6 +2294,12 @@ export type MutationUpdateOneDishArgs = {
 };
 
 
+export type MutationUpdateOneDishNutrientArgs = {
+  data: DishNutrientUpdateInput;
+  where: DishNutrientWhereUniqueInput;
+};
+
+
 export type MutationUpdateOneDishProductArgs = {
   data: DishProductUpdateInput;
   where: DishProductWhereUniqueInput;
@@ -1914,6 +2365,13 @@ export type MutationUpsertOneDishArgs = {
   create: DishCreateInput;
   update: DishUpdateInput;
   where: DishWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneDishNutrientArgs = {
+  create: DishNutrientCreateInput;
+  update: DishNutrientUpdateInput;
+  where: DishNutrientWhereUniqueInput;
 };
 
 
@@ -2161,10 +2619,21 @@ export type Nutrient = {
   __typename?: 'Nutrient';
   _count?: Maybe<NutrientCount>;
   categoryId: Scalars['Int']['output'];
+  dishNutrients: Array<DishNutrient>;
   id: Scalars['String']['output'];
   name: Scalars['String']['output'];
   nutrientCategory: NutrientCategory;
   productNutrients: Array<ProductNutrient>;
+};
+
+
+export type NutrientDishNutrientsArgs = {
+  cursor?: InputMaybe<DishNutrientWhereUniqueInput>;
+  distinct?: InputMaybe<Array<DishNutrientScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -2408,7 +2877,13 @@ export type NutrientCategoryWhereUniqueInput = {
 
 export type NutrientCount = {
   __typename?: 'NutrientCount';
+  dishNutrients: Scalars['Int']['output'];
   productNutrients: Scalars['Int']['output'];
+};
+
+
+export type NutrientCountDishNutrientsArgs = {
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -2431,6 +2906,7 @@ export type NutrientCountOrderByAggregateInput = {
 };
 
 export type NutrientCreateInput = {
+  dishNutrients?: InputMaybe<DishNutrientCreateNestedManyWithoutNutrientInput>;
   id: Scalars['String']['input'];
   name: Scalars['String']['input'];
   nutrientCategory: NutrientCategoryCreateNestedOneWithoutNutrientsInput;
@@ -2460,10 +2936,21 @@ export type NutrientCreateNestedManyWithoutNutrientCategoryInput = {
   createMany?: InputMaybe<NutrientCreateManyNutrientCategoryInputEnvelope>;
 };
 
+export type NutrientCreateNestedOneWithoutDishNutrientsInput = {
+  connect?: InputMaybe<NutrientWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<NutrientCreateOrConnectWithoutDishNutrientsInput>;
+  create?: InputMaybe<NutrientCreateWithoutDishNutrientsInput>;
+};
+
 export type NutrientCreateNestedOneWithoutProductNutrientsInput = {
   connect?: InputMaybe<NutrientWhereUniqueInput>;
   connectOrCreate?: InputMaybe<NutrientCreateOrConnectWithoutProductNutrientsInput>;
   create?: InputMaybe<NutrientCreateWithoutProductNutrientsInput>;
+};
+
+export type NutrientCreateOrConnectWithoutDishNutrientsInput = {
+  create: NutrientCreateWithoutDishNutrientsInput;
+  where: NutrientWhereUniqueInput;
 };
 
 export type NutrientCreateOrConnectWithoutNutrientCategoryInput = {
@@ -2476,13 +2963,22 @@ export type NutrientCreateOrConnectWithoutProductNutrientsInput = {
   where: NutrientWhereUniqueInput;
 };
 
+export type NutrientCreateWithoutDishNutrientsInput = {
+  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  nutrientCategory: NutrientCategoryCreateNestedOneWithoutNutrientsInput;
+  productNutrients?: InputMaybe<ProductNutrientCreateNestedManyWithoutNutrientInput>;
+};
+
 export type NutrientCreateWithoutNutrientCategoryInput = {
+  dishNutrients?: InputMaybe<DishNutrientCreateNestedManyWithoutNutrientInput>;
   id: Scalars['String']['input'];
   name: Scalars['String']['input'];
   productNutrients?: InputMaybe<ProductNutrientCreateNestedManyWithoutNutrientInput>;
 };
 
 export type NutrientCreateWithoutProductNutrientsInput = {
+  dishNutrients?: InputMaybe<DishNutrientCreateNestedManyWithoutNutrientInput>;
   id: Scalars['String']['input'];
   name: Scalars['String']['input'];
   nutrientCategory: NutrientCategoryCreateNestedOneWithoutNutrientsInput;
@@ -2549,6 +3045,7 @@ export type NutrientOrderByWithAggregationInput = {
 
 export type NutrientOrderByWithRelationInput = {
   categoryId?: InputMaybe<SortOrder>;
+  dishNutrients?: InputMaybe<DishNutrientOrderByRelationAggregateInput>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   nutrientCategory?: InputMaybe<NutrientCategoryOrderByWithRelationInput>;
@@ -2594,6 +3091,7 @@ export type NutrientSumOrderByAggregateInput = {
 };
 
 export type NutrientUpdateInput = {
+  dishNutrients?: InputMaybe<DishNutrientUpdateManyWithoutNutrientNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   nutrientCategory?: InputMaybe<NutrientCategoryUpdateOneRequiredWithoutNutrientsNestedInput>;
@@ -2624,12 +3122,25 @@ export type NutrientUpdateManyWithoutNutrientCategoryNestedInput = {
   upsert?: InputMaybe<Array<NutrientUpsertWithWhereUniqueWithoutNutrientCategoryInput>>;
 };
 
+export type NutrientUpdateOneRequiredWithoutDishNutrientsNestedInput = {
+  connect?: InputMaybe<NutrientWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<NutrientCreateOrConnectWithoutDishNutrientsInput>;
+  create?: InputMaybe<NutrientCreateWithoutDishNutrientsInput>;
+  update?: InputMaybe<NutrientUpdateToOneWithWhereWithoutDishNutrientsInput>;
+  upsert?: InputMaybe<NutrientUpsertWithoutDishNutrientsInput>;
+};
+
 export type NutrientUpdateOneRequiredWithoutProductNutrientsNestedInput = {
   connect?: InputMaybe<NutrientWhereUniqueInput>;
   connectOrCreate?: InputMaybe<NutrientCreateOrConnectWithoutProductNutrientsInput>;
   create?: InputMaybe<NutrientCreateWithoutProductNutrientsInput>;
   update?: InputMaybe<NutrientUpdateToOneWithWhereWithoutProductNutrientsInput>;
   upsert?: InputMaybe<NutrientUpsertWithoutProductNutrientsInput>;
+};
+
+export type NutrientUpdateToOneWithWhereWithoutDishNutrientsInput = {
+  data: NutrientUpdateWithoutDishNutrientsInput;
+  where?: InputMaybe<NutrientWhereInput>;
 };
 
 export type NutrientUpdateToOneWithWhereWithoutProductNutrientsInput = {
@@ -2642,13 +3153,22 @@ export type NutrientUpdateWithWhereUniqueWithoutNutrientCategoryInput = {
   where: NutrientWhereUniqueInput;
 };
 
+export type NutrientUpdateWithoutDishNutrientsInput = {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  nutrientCategory?: InputMaybe<NutrientCategoryUpdateOneRequiredWithoutNutrientsNestedInput>;
+  productNutrients?: InputMaybe<ProductNutrientUpdateManyWithoutNutrientNestedInput>;
+};
+
 export type NutrientUpdateWithoutNutrientCategoryInput = {
+  dishNutrients?: InputMaybe<DishNutrientUpdateManyWithoutNutrientNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   productNutrients?: InputMaybe<ProductNutrientUpdateManyWithoutNutrientNestedInput>;
 };
 
 export type NutrientUpdateWithoutProductNutrientsInput = {
+  dishNutrients?: InputMaybe<DishNutrientUpdateManyWithoutNutrientNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   nutrientCategory?: InputMaybe<NutrientCategoryUpdateOneRequiredWithoutNutrientsNestedInput>;
@@ -2658,6 +3178,12 @@ export type NutrientUpsertWithWhereUniqueWithoutNutrientCategoryInput = {
   create: NutrientCreateWithoutNutrientCategoryInput;
   update: NutrientUpdateWithoutNutrientCategoryInput;
   where: NutrientWhereUniqueInput;
+};
+
+export type NutrientUpsertWithoutDishNutrientsInput = {
+  create: NutrientCreateWithoutDishNutrientsInput;
+  update: NutrientUpdateWithoutDishNutrientsInput;
+  where?: InputMaybe<NutrientWhereInput>;
 };
 
 export type NutrientUpsertWithoutProductNutrientsInput = {
@@ -2671,6 +3197,7 @@ export type NutrientWhereInput = {
   NOT?: InputMaybe<Array<NutrientWhereInput>>;
   OR?: InputMaybe<Array<NutrientWhereInput>>;
   categoryId?: InputMaybe<IntFilter>;
+  dishNutrients?: InputMaybe<DishNutrientListRelationFilter>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   nutrientCategory?: InputMaybe<NutrientCategoryRelationFilter>;
@@ -2682,6 +3209,7 @@ export type NutrientWhereUniqueInput = {
   NOT?: InputMaybe<Array<NutrientWhereInput>>;
   OR?: InputMaybe<Array<NutrientWhereInput>>;
   categoryId?: InputMaybe<IntFilter>;
+  dishNutrients?: InputMaybe<DishNutrientListRelationFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringFilter>;
   nutrientCategory?: InputMaybe<NutrientCategoryRelationFilter>;
@@ -4364,6 +4892,7 @@ export type Query = {
   __typename?: 'Query';
   aggregateDailyMenu: AggregateDailyMenu;
   aggregateDish: AggregateDish;
+  aggregateDishNutrient: AggregateDishNutrient;
   aggregateDishProduct: AggregateDishProduct;
   aggregateMenuDish: AggregateMenuDish;
   aggregateNutrient: AggregateNutrient;
@@ -4376,12 +4905,16 @@ export type Query = {
   dailyMenu?: Maybe<DailyMenu>;
   dailyMenus: Array<DailyMenu>;
   dish?: Maybe<Dish>;
+  dishNutrient?: Maybe<DishNutrient>;
+  dishNutrients: Array<DishNutrient>;
   dishProduct?: Maybe<DishProduct>;
   dishProducts: Array<DishProduct>;
   dishes: Array<Dish>;
   findFirstDailyMenu?: Maybe<DailyMenu>;
   findFirstDailyMenuOrThrow?: Maybe<DailyMenu>;
   findFirstDish?: Maybe<Dish>;
+  findFirstDishNutrient?: Maybe<DishNutrient>;
+  findFirstDishNutrientOrThrow?: Maybe<DishNutrient>;
   findFirstDishOrThrow?: Maybe<Dish>;
   findFirstDishProduct?: Maybe<DishProduct>;
   findFirstDishProductOrThrow?: Maybe<DishProduct>;
@@ -4403,6 +4936,7 @@ export type Query = {
   findFirstProductOrThrow?: Maybe<Product>;
   getDailyMenu?: Maybe<DailyMenu>;
   getDish?: Maybe<Dish>;
+  getDishNutrient?: Maybe<DishNutrient>;
   getDishProduct?: Maybe<DishProduct>;
   getMenuDish?: Maybe<MenuDish>;
   getNutrient?: Maybe<Nutrient>;
@@ -4414,6 +4948,7 @@ export type Query = {
   getProductNutrient?: Maybe<ProductNutrient>;
   groupByDailyMenu: Array<DailyMenuGroupBy>;
   groupByDish: Array<DishGroupBy>;
+  groupByDishNutrient: Array<DishNutrientGroupBy>;
   groupByDishProduct: Array<DishProductGroupBy>;
   groupByMenuDish: Array<MenuDishGroupBy>;
   groupByNutrient: Array<NutrientGroupBy>;
@@ -4457,6 +4992,15 @@ export type QueryAggregateDishArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DishWhereInput>;
+};
+
+
+export type QueryAggregateDishNutrientArgs = {
+  cursor?: InputMaybe<DishNutrientWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -4561,6 +5105,21 @@ export type QueryDishArgs = {
 };
 
 
+export type QueryDishNutrientArgs = {
+  where: DishNutrientWhereUniqueInput;
+};
+
+
+export type QueryDishNutrientsArgs = {
+  cursor?: InputMaybe<DishNutrientWhereUniqueInput>;
+  distinct?: InputMaybe<Array<DishNutrientScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
+};
+
+
 export type QueryDishProductArgs = {
   where: DishProductWhereUniqueInput;
 };
@@ -4613,6 +5172,26 @@ export type QueryFindFirstDishArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DishWhereInput>;
+};
+
+
+export type QueryFindFirstDishNutrientArgs = {
+  cursor?: InputMaybe<DishNutrientWhereUniqueInput>;
+  distinct?: InputMaybe<Array<DishNutrientScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
+};
+
+
+export type QueryFindFirstDishNutrientOrThrowArgs = {
+  cursor?: InputMaybe<DishNutrientWhereUniqueInput>;
+  distinct?: InputMaybe<Array<DishNutrientScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 
@@ -4816,6 +5395,11 @@ export type QueryGetDishArgs = {
 };
 
 
+export type QueryGetDishNutrientArgs = {
+  where: DishNutrientWhereUniqueInput;
+};
+
+
 export type QueryGetDishProductArgs = {
   where: DishProductWhereUniqueInput;
 };
@@ -4878,6 +5462,16 @@ export type QueryGroupByDishArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DishWhereInput>;
+};
+
+
+export type QueryGroupByDishNutrientArgs = {
+  by: Array<DishNutrientScalarFieldEnum>;
+  having?: InputMaybe<DishNutrientScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<DishNutrientOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<DishNutrientWhereInput>;
 };
 
 

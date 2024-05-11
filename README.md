@@ -18,13 +18,9 @@ npm run generate-api-key
 npx prisma generate && rm -rf prisma/migrations && npx prisma migrate reset --force && npx prisma migrate dev --name auto_migration && npm run seed && npm run server
 
 
-pm2 start "cd /root/e_ration_server && npm run server" -n "e_ration_server3006"
-pm2 status
-pm2 save
-
 В процессе работы сервера можно менять PRODUCTION_MODE в .env для управления необходимостью предоставления api-key в заголовке запроса
 
 Для генерации src/graphql.tsx хуков (при запущенном сервере):
-npm run generate
+npm run codegen && git add . && git commit -m "graphql.tsx generate codegen" && git push
 
 
