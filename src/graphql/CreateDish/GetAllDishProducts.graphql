@@ -5,10 +5,17 @@ query GetAllDishProducts {
     description
     dishProducts {
       productId
+      cookCoeff
+      amount
       product {
         name
       }
-      cookCoeff
+    }
+    dishNutrients {
+      nutrientId
+      nutrient {
+        name
+      }
       amount
     }
   }

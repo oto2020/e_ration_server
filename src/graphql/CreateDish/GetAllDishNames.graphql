@@ -1,4 +1,4 @@
-query GetAllDishNames {
+query GetAllDishes {
   dishes {
     id
     name
