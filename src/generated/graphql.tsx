@@ -5781,6 +5781,13 @@ export type FindProductInfoByIdQueryVariables = Exact<{
 
 export type FindProductInfoByIdQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, productCategory: { __typename?: 'ProductCategory', name: string }, productMeasures: Array<{ __typename?: 'ProductMeasure', name: string, desc?: string | null, value: number }>, productClearWeights: Array<{ __typename?: 'ProductClearWeight', value: number }>, productNutrients: Array<{ __typename?: 'ProductNutrient', nutrientId: string, valueAmount: number, valueExponent: number, valueString?: string | null, nutrient: { __typename?: 'Nutrient', name: string, categoryId: number, nutrientCategory: { __typename?: 'NutrientCategory', name: string } } }> }> };
 
+export type FindProductInfoByIdArrQueryVariables = Exact<{
+  productIdArr: Array<Scalars['Int']['input']> | Scalars['Int']['input'];
+}>;
+
+
+export type FindProductInfoByIdArrQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, productCategory: { __typename?: 'ProductCategory', name: string }, productMeasures: Array<{ __typename?: 'ProductMeasure', name: string, desc?: string | null, value: number }>, productClearWeights: Array<{ __typename?: 'ProductClearWeight', value: number }>, productNutrients: Array<{ __typename?: 'ProductNutrient', nutrientId: string, valueAmount: number, valueExponent: number, valueString?: string | null, nutrient: { __typename?: 'Nutrient', name: string, categoryId: number, nutrientCategory: { __typename?: 'NutrientCategory', name: string } } }> }> };
+
 export type GetAllDishesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5953,6 +5960,71 @@ export type FindProductInfoByIdQueryHookResult = ReturnType<typeof useFindProduc
 export type FindProductInfoByIdLazyQueryHookResult = ReturnType<typeof useFindProductInfoByIdLazyQuery>;
 export type FindProductInfoByIdSuspenseQueryHookResult = ReturnType<typeof useFindProductInfoByIdSuspenseQuery>;
 export type FindProductInfoByIdQueryResult = Apollo.QueryResult<FindProductInfoByIdQuery, FindProductInfoByIdQueryVariables>;
+export const FindProductInfoByIdArrDocument = gql`
+    query FindProductInfoByIdArr($productIdArr: [Int!]!) {
+  products(where: {id: {in: $productIdArr}}) {
+    id
+    name
+    productCategory {
+      name
+    }
+    productMeasures {
+      name
+      desc
+      value
+    }
+    productClearWeights {
+      value
+    }
+    productNutrients {
+      nutrientId
+      nutrient {
+        name
+        categoryId
+        nutrientCategory {
+          name
+        }
+      }
+      valueAmount
+      valueExponent
+      valueString
+    }
+  }
+}
+    `;
+
+/**
+ * __useFindProductInfoByIdArrQuery__
+ *
+ * To run a query within a React component, call `useFindProductInfoByIdArrQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindProductInfoByIdArrQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindProductInfoByIdArrQuery({
+ *   variables: {
+ *      productIdArr: // value for 'productIdArr'
+ *   },
+ * });
+ */
+export function useFindProductInfoByIdArrQuery(baseOptions: Apollo.QueryHookOptions<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables> & ({ variables: FindProductInfoByIdArrQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables>(FindProductInfoByIdArrDocument, options);
+      }
+export function useFindProductInfoByIdArrLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables>(FindProductInfoByIdArrDocument, options);
+        }
+export function useFindProductInfoByIdArrSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables>(FindProductInfoByIdArrDocument, options);
+        }
+export type FindProductInfoByIdArrQueryHookResult = ReturnType<typeof useFindProductInfoByIdArrQuery>;
+export type FindProductInfoByIdArrLazyQueryHookResult = ReturnType<typeof useFindProductInfoByIdArrLazyQuery>;
+export type FindProductInfoByIdArrSuspenseQueryHookResult = ReturnType<typeof useFindProductInfoByIdArrSuspenseQuery>;
+export type FindProductInfoByIdArrQueryResult = Apollo.QueryResult<FindProductInfoByIdArrQuery, FindProductInfoByIdArrQueryVariables>;
 export const GetAllDishesDocument = gql`
     query GetAllDishes {
   dishes {

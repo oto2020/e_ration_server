@@ -1,0 +1,30 @@
+query FindProductInfoByIdArr($productIdArr: [Int!]!) {
+  products(where: {id: {in: $productIdArr}}) {
+    id
+    name
+    productCategory {
+      name
+    }
+    productMeasures {
+      name
+      desc
+      value
+    }
+    productClearWeights {
+      value
+    }
+    productNutrients {
+      nutrientId
+      nutrient {
+        name
+        categoryId
+        nutrientCategory {
+          name
+        }
+      }
+      valueAmount
+      valueExponent
+      valueString
+    }
+  }
+}
